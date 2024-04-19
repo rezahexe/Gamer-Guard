@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.net.URL;
 
@@ -74,6 +77,30 @@ public class LoginController implements Initializable {
 
     // Will be used in the future with loginButtonOnAction and SQL. Going to sleep now lol.
     public void validateLogin() {
+        DatabaseConnection connectionNow =  new DatabaseConnection();
+        Connection connectDB =  connectionNow.getConnection();
+
+        String verifyLogin = "SELECT count(1) FROM user_account WHERE emailaddress = '" + emailTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'" ;
+
+        try {
+
+            Statement statement =  connectDB.createStatement();
+            ResultSet queryResult = statement.executeQuery(verifyLogin);
+
+            while(queryResult.next()) {
+                if(queryResult.getInt(1) == 1){
+                    loginMessageLabel.setText("Welcome to Gamer Guard!");
+                } else {
+                    loginMessageLabel.setText("Invalid login. Please try again");
+
+                }
+
+            }
+
+        } catch ( Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
 }
