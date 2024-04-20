@@ -1,12 +1,15 @@
 package com.example.gamerguard;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.sql.Connection;
@@ -37,10 +40,9 @@ public class LoginController implements Initializable {
      * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
      * @param resourceBundle The resource bundle that contains localized objects for the controller, or null if there is no resource bundle.
      */
-    @Override
     public  void initialize (URL url, ResourceBundle resourceBundle) {
         File logoFile = new File("Images/GAMER_GUARD_LOGO.png");
-        Image logoImage = new Image(logoFile.toURI().toASCIIString());
+        Image logoImage = new Image(logoFile.toURI().toString());
         logoImageView.setImage(logoImage);
     }
 
@@ -77,8 +79,8 @@ public class LoginController implements Initializable {
 
     // Will be used in the future with loginButtonOnAction and SQL. Going to sleep now lol.
     public void validateLogin() {
-        DatabaseConnection connectionNow =  new DatabaseConnection();
-        Connection connectDB =  connectionNow.getConnection();
+        DatabaseConnection connectNow =  new DatabaseConnection();
+        Connection connectDB =  connectNow.getConnection();
 
         String verifyLogin = "SELECT count(1) FROM user_account WHERE emailaddress = '" + emailTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'" ;
 
@@ -89,15 +91,30 @@ public class LoginController implements Initializable {
 
             while(queryResult.next()) {
                 if(queryResult.getInt(1) == 1){
-                    loginMessageLabel.setText("Welcome to Gamer Guard!");
+//                    loginMessageLabel.setText("Welcome to Gamer Guard!");
+                    createAccountForm();
+
                 } else {
                     loginMessageLabel.setText("Invalid login. Please try again");
-
                 }
-
             }
 
         } catch ( Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
+
+    public void createAccountForm() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SignUp.fxml"));
+            Stage createAccountStage = new Stage();
+            createAccountStage.initStyle(StageStyle.UNDECORATED);
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            createAccountStage.setScene(scene);
+            createAccountStage.show();
+
+        } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
         }
