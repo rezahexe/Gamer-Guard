@@ -2,24 +2,27 @@ package com.example.gamerguard;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
+
 
 public class DatabaseConnection {
-    public Connection databaseLink;
+    public static Connection instance = null;
 
-    public Connection getConnection() {
-        String databaseName = "gamer_guard";
-        String databaseUser = "root";
-        String databasePassword = "serenegamerguard1234";
-        String url = "jdbc:mysql://localhost:3306/" + databaseName;
+    private DatabaseConnection() {
+
+        String url = "jdbc:sqlite:database.db"; // Database driver
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            databaseLink = DriverManager.getConnection(url, databaseUser, databasePassword);
-        }catch(Exception e) {
-            e.printStackTrace();
-            e.getCause();
+            instance = DriverManager.getConnection(url);
+        }catch (SQLException sqlEx) {
+            System.err.println(sqlEx);
         }
+    }
 
-        return databaseLink;
+    public static Connection getInstance() {
+        if (instance == null) {
+            new DatabaseConnection();
+        }
+        return instance;
     }
 }

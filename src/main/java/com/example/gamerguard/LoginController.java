@@ -14,6 +14,7 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.net.URL;
@@ -30,6 +31,8 @@ public class LoginController implements Initializable {
     private TextField emailTextField;
     @FXML
     private PasswordField passwordPasswordField;
+//    @FXML
+//    private Hyperlink signupHyperlink;
 
 
     /**
@@ -65,6 +68,10 @@ public class LoginController implements Initializable {
         }
     }
 
+    public void signupHyperlinkOnAction(ActionEvent event) {
+        createAccountForm();
+    }
+
     /**
      * Handles the action event when the cancel button is clicked.
      * Retrieves the stage associated with the cancel button's scene
@@ -77,10 +84,9 @@ public class LoginController implements Initializable {
         stage.close();
     }
 
-    // Will be used in the future with loginButtonOnAction and SQL. Going to sleep now lol.
+    // Will be used in the future with loginButtonOnAction and SQL.
     public void validateLogin() {
-        DatabaseConnection connectNow =  new DatabaseConnection();
-        Connection connectDB =  connectNow.getConnection();
+        Connection connectDB = DatabaseConnection.getInstance();
 
         String verifyLogin = "SELECT count(1) FROM user_account WHERE emailaddress = '" + emailTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'" ;
 
@@ -92,24 +98,38 @@ public class LoginController implements Initializable {
             while(queryResult.next()) {
                 if(queryResult.getInt(1) == 1){
 //                    loginMessageLabel.setText("Welcome to Gamer Guard!");
-                    createAccountForm();
+                    openDashboard();
 
                 } else {
                     loginMessageLabel.setText("Invalid login. Please try again");
                 }
             }
 
-        } catch ( Exception e) {
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+
+    public void openDashboard(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
+            Stage openDashboardStage = new Stage();
+            openDashboardStage.initStyle(StageStyle.DECORATED);
+            Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
+            openDashboardStage.setScene(scene);
+            openDashboardStage.show();
+        } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
         }
     }
 
+
     public void createAccountForm() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("SignUp.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("sign-up.fxml"));
             Stage createAccountStage = new Stage();
-            createAccountStage.initStyle(StageStyle.UNDECORATED);
+            createAccountStage.initStyle(StageStyle.DECORATED);
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
             createAccountStage.setScene(scene);
             createAccountStage.show();
@@ -121,12 +141,3 @@ public class LoginController implements Initializable {
     }
 
 }
-
-
-//    @FXML
-//    private Label welcomeText;
-
-//    @FXML
-//    protected void onHelloButtonClick() {
-//        welcomeText.setText("Welcome to GamerGuard!");
-//    }
