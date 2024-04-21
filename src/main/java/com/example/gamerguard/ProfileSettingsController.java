@@ -24,8 +24,18 @@ public class ProfileSettingsController implements Initializable {
     private Button cancelButton;
     @FXML
     private Label loginMessageLabel;
+
+
     @FXML
     private ImageView logoImageView;
+    @FXML
+    private ImageView button_back;
+    @FXML
+    private ImageView logoImageView1;
+    @FXML
+    private ImageView logoImageView2;
+
+
     @FXML
     private TextField emailTextField;
     @FXML
@@ -44,6 +54,18 @@ public class ProfileSettingsController implements Initializable {
         File logoFile = new File("Images/defaultprofile.png");
         Image logoImage = new Image(logoFile.toURI().toString());
         logoImageView.setImage(logoImage);
+
+        File logoFile0 = new File("Images/button_back.png");
+        Image logoImage0 = new Image(logoFile0.toURI().toString());
+        button_back.setImage(logoImage0);
+
+        File logoFile1 = new File("Images/icon_steam.png");
+        Image logoImage1 = new Image(logoFile1.toURI().toString());
+        logoImageView1.setImage(logoImage1);
+
+        File logoFile2 = new File("Images/icon_spotify.png");
+        Image logoImage2 = new Image(logoFile2.toURI().toString());
+        logoImageView2.setImage(logoImage2);
     }
 
     /**
@@ -74,6 +96,12 @@ public class ProfileSettingsController implements Initializable {
      */
     public void cancelButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    public void backButtonOnAction() {
+        Stage stage = (Stage) button_back.getScene().getWindow();
         stage.close();
     }
 
