@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,10 +13,12 @@ import javafx.event.ActionEvent;
 import javafx.stage.StageStyle;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.EventObject;
 import java.util.ResourceBundle;
 import java.net.URL;
 
@@ -31,8 +34,8 @@ public class LoginController implements Initializable {
     private TextField emailTextField;
     @FXML
     private PasswordField passwordPasswordField;
-//    @FXML
-//    private Hyperlink signupHyperlink;
+    @FXML
+    private Hyperlink signupHyperlink;
 
 
     /**
@@ -48,6 +51,7 @@ public class LoginController implements Initializable {
         Image logoImage = new Image(logoFile.toURI().toString());
         logoImageView.setImage(logoImage);
     }
+
 
     /**
      * Handles the action event when the login button is clicked.
@@ -68,8 +72,11 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void signupHyperlinkOnAction(ActionEvent event) {
-        createAccountForm();
+    public void signupHyperlinkOnAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) signupHyperlink.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("sign-up.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        stage.setScene(scene);
     }
 
     /**
@@ -84,7 +91,6 @@ public class LoginController implements Initializable {
         stage.close();
     }
 
-    // Will be used in the future with loginButtonOnAction and SQL.
     public void validateLogin() {
         Connection connectDB = DatabaseConnection.getInstance();
 
@@ -105,39 +111,17 @@ public class LoginController implements Initializable {
                 }
             }
 
-        } catch (SQLException ex) {
+        } catch (SQLException | IOException ex) {
             System.err.println(ex);
         }
     }
 
-    public void openDashboard(){
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
-            Stage openDashboardStage = new Stage();
-            openDashboardStage.initStyle(StageStyle.DECORATED);
-            Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
-            openDashboardStage.setScene(scene);
-            openDashboardStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
 
-
-    public void createAccountForm() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("sign-up.fxml"));
-            Stage createAccountStage = new Stage();
-            createAccountStage.initStyle(StageStyle.DECORATED);
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-            createAccountStage.setScene(scene);
-            createAccountStage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
+    public void openDashboard() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        Stage stage = (Stage) loginMessageLabel.getScene().getWindow();
+        stage.setScene(scene);
     }
 
 }

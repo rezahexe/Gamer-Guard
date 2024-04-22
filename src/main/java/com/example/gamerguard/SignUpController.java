@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -38,6 +39,8 @@ public class SignUpController implements Initializable {
     private PasswordField setPasswordField;
     @FXML
     private PasswordField confirmPasswordField;
+    @FXML
+    private Hyperlink loginHyperlink;
 
 
 
@@ -81,9 +84,13 @@ public class SignUpController implements Initializable {
             e.printStackTrace();
             e.getCause();
         }
+    }
 
-
-
+    public void loginHyperlinkOnAction(ActionEvent event) throws IOException {
+        Stage stage = (Stage) loginHyperlink.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        stage.setScene(scene);
     }
 
     public void cancelButtonOnAction(ActionEvent event) {
