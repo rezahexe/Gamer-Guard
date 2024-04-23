@@ -12,7 +12,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("profile-settings.fxml"));
-        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.DECORATED);
         Scene scene = new Scene(fxmlLoader.load(), 1080, 720);
 //        stage.setTitle("Welcome to GamerGuard!");
         stage.setScene(scene);
