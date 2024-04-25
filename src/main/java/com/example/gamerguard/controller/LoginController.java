@@ -1,16 +1,16 @@
-package com.example.gamerguard;
+package com.example.gamerguard.controller;
 
+import com.example.gamerguard.model.DatabaseConnection;
+import com.example.gamerguard.HelloApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,12 +18,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.EventObject;
 import java.util.ResourceBundle;
 import java.net.URL;
 
 public class LoginController implements Initializable {
 
+    @FXML
+    private Button loginButton;
     @FXML
     private Button cancelButton;
     @FXML
@@ -34,6 +35,8 @@ public class LoginController implements Initializable {
     private TextField emailTextField;
     @FXML
     private PasswordField passwordPasswordField;
+/*    @FXML
+    private Hyperlink forgotPasswordHyperlink;*/
     @FXML
     private Hyperlink signupHyperlink;
 
@@ -79,17 +82,16 @@ public class LoginController implements Initializable {
         stage.setScene(scene);
     }
 
-    /**
-     * Handles the action event when the cancel button is clicked.
-     * Retrieves the stage associated with the cancel button's scene
-     * and closes it, effectively canceling the current operation.
-     *
-     * @param event The ActionEvent triggered by clicking the cancel button.
-     */
-    public void cancelButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+    public void forgotPasswordHyperlinkOnAction(ActionEvent event) throws IOException {
+//        Stage stage = (Stage) forgotPasswordHyperlink.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("forgotpassword.fxml"));
+        Stage forgotPasswordStage = new Stage();
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        forgotPasswordStage.setScene(scene);
+        forgotPasswordStage.show();
     }
+
+
 
     public void validateLogin() {
         Connection connectDB = DatabaseConnection.getInstance();
@@ -120,8 +122,21 @@ public class LoginController implements Initializable {
     public void openDashboard() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        Stage stage = (Stage) loginMessageLabel.getScene().getWindow();
+        Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.setScene(scene);
+    }
+
+
+    /**
+     * Handles the action event when the cancel button is clicked.
+     * Retrieves the stage associated with the cancel button's scene
+     * and closes it, effectively canceling the current operation.
+     *
+     * @param event The ActionEvent triggered by clicking the cancel button.
+     */
+    public void cancelButtonOnAction(ActionEvent event) {
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 
 }

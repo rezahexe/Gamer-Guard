@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamerguard.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamerguard.controller.LoginController">
    <left>
       <AnchorPane prefHeight="720.0" prefWidth="360.0" style="-fx-background-color: #2D294C;" BorderPane.alignment="CENTER">
          <children>
@@ -52,7 +52,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <Hyperlink fx:id="forgotPasswordHyperlink" alignment="CENTER" layoutX="240.0" layoutY="360.0" prefHeight="20.0" prefWidth="200.0" text="Forgot your password?" underline="true">
+            <Hyperlink fx:id="forgotPasswordHyperlink" alignment="CENTER" layoutX="240.0" layoutY="360.0" onAction="#forgotPasswordHyperlinkOnAction" prefHeight="20.0" prefWidth="200.0" text="Forgot your password?" underline="true">
                <font>
                   <Font size="13.0" />
                </font>

@@ -1,4 +1,4 @@
-package com.example.gamerguard;
+package com.example.gamerguard.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

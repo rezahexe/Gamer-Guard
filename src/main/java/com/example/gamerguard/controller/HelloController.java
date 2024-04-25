@@ -1,7 +1,4 @@
-package com.example.gamerguard;
-
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+package com.example.gamerguard.controller;
 
 public class HelloController {
 
