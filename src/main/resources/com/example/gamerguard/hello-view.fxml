@@ -1,17 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!--I have commented the below lines because I have created the main login and
+signup FXML file "login.fxml". When you begin working on the dashboard,
+feel free to uncomment the lines and rename the file.-->
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.gamerguard.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<!--<?import javafx.geometry.Insets?>-->
+<!--<?import javafx.scene.control.Label?>-->
+<!--<?import javafx.scene.layout.VBox?>-->
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Sign up" onAction="#onHelloButtonClick"/>
-    <Button text="Login" onAction="#onHelloButtonClick"/>
-</VBox>
+<!--<?import javafx.scene.control.Button?>-->
+<!--<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"-->
+<!--      fx:controller="com.example.gamerguard.HelloController">-->
+<!--    <padding>-->
+<!--        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>-->
+<!--    </padding>-->
+
+<!--    <Label fx:id="welcomeText"/>-->
+<!--    <Button text="Sign up" onAction="#onHelloButtonClick"/>-->
+<!--    <Button text="Login" onAction="#onHelloButtonClick"/>-->
+<!--</VBox>-->
