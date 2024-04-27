@@ -49,7 +49,7 @@
                      </font>
                   </Label>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="11.0" layoutX="23.0" layoutY="198.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="735.0" />
-                  <Text layoutX="196.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile_Name_Placeholder" wrappingWidth="552.8033752441406">
+                  <Text fx:id="text_display_username" layoutX="196.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Profile_Name_Placeholder" wrappingWidth="552.8033752441406">
                      <font>
                         <Font size="40.0" />
                      </font>
@@ -87,7 +87,7 @@
                      </font>
                   </Label>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#541386" height="27.0" layoutX="95.0" smooth="false" stroke="#521485" strokeDashOffset="25.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="25.0" strokeType="OUTSIDE" strokeWidth="10.0" width="591.0" AnchorPane.topAnchor="555.0" />
-                  <Label alignment="CENTER" layoutX="250.0" prefHeight="20.0" prefWidth="282.0" text="Change password" textFill="WHITE" AnchorPane.topAnchor="565.0">
+                  <Label fx:id="btnTXT_change_password" alignment="CENTER" layoutX="250.0" prefHeight="20.0" prefWidth="282.0" text="Change password" textFill="WHITE" AnchorPane.topAnchor="565.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -110,8 +110,8 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutX="95.0" smooth="false" stroke="WHITE" strokeDashOffset="25.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="25.0" strokeType="OUTSIDE" strokeWidth="10.0" width="591.0" AnchorPane.topAnchor="815.0" />
-                  <Label alignment="CENTER" layoutX="250.0" prefHeight="20.0" prefWidth="282.0" text="Delete account" textFill="#521485" AnchorPane.topAnchor="825.0">
+                  <Rectangle fx:id="btnBG_delete_account" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="27.0" layoutX="95.0" smooth="false" stroke="WHITE" strokeDashOffset="25.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="25.0" strokeType="OUTSIDE" strokeWidth="10.0" width="591.0" AnchorPane.topAnchor="815.0" />
+                  <Label fx:id="btnTXT_delete_account" alignment="CENTER" layoutX="250.0" prefHeight="20.0" prefWidth="282.0" text="Delete account" textFill="#521485" AnchorPane.topAnchor="825.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

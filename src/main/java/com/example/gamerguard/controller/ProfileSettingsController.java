@@ -1,7 +1,7 @@
 package com.example.gamerguard.controller;
 
-import com.example.gamerguard.HelloApplication;
 import com.example.gamerguard.model.DatabaseConnection;
+import com.example.gamerguard.HelloApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -9,9 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,6 +26,10 @@ import java.net.URL;
 
 public class ProfileSettingsController implements Initializable {
 
+    public Label btnTXT_change_password;
+    public Label btnTXT_delete_account;
+    public Rectangle btnBG_delete_account;
+    public Text text_display_username;
     @FXML
     private Button cancelButton;
     @FXML
@@ -59,6 +65,9 @@ public class ProfileSettingsController implements Initializable {
         Image logoImage = new Image(logoFile.toURI().toString());
         logoImageView.setImage(logoImage);
 
+        int userId = SessionInfo.getUserId();
+        text_display_username.setText(String.valueOf(userId));
+
         File logoFile0 = new File("Images/button_back.png");
         Image logoImage0 = new Image(logoFile0.toURI().toString());
         button_back.setImage(logoImage0);
@@ -70,28 +79,44 @@ public class ProfileSettingsController implements Initializable {
         File logoFile2 = new File("Images/icon_spotify.png");
         Image logoImage2 = new Image(logoFile2.toURI().toString());
         logoImageView2.setImage(logoImage2);
+
+        btnTXT_delete_account.setOnMouseClicked(this::deleteButtonOnAction);
+        btnBG_delete_account.setOnMouseClicked(this::deleteButtonOnAction);
     }
 
+    private void deleteButtonOnAction(MouseEvent mouseEvent) {
+        System.out.println("Testing delete button >:3");
 
+        Connection connectDB = DatabaseConnection.getInstance();
 
-    /**
-     * Handles the action event when the cancel button is clicked.
-     * Retrieves the stage associated with the cancel button's scene
-     * and closes it, effectively canceling the current operation.
-     *
-     * @param event The ActionEvent triggered by clicking the cancel button.
-     */
-    public void cancelButtonOnAction(ActionEvent event) {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+        int userId = SessionInfo.getUserId();
+        System.out.println(userId);
+
+        String deleteAccount = "DELETE FROM user_account WHERE account_Id = '" + userId + "'";
+
+        try {
+
+            Statement statement = connectDB.createStatement();
+            int rowsAffected = statement.executeUpdate(deleteAccount);
+
+            if (rowsAffected > 0) {
+                System.out.println("Row deleted successfully >:3");
+                // Optionally, you can perform additional actions here if a row was successfully deleted
+            } else {
+                System.out.println("No rows were deleted :0");
+                // Optionally, you can handle the case where no rows were deleted
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
     }
 
     @FXML
     public void backButtonOnAction() {
+        System.out.println("Testing close window >:3");
         Stage stage = (Stage) button_back.getScene().getWindow();
         stage.close();
     }
-
-
 }
 

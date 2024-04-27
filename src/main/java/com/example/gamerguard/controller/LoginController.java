@@ -96,7 +96,7 @@ public class LoginController implements Initializable {
     public void validateLogin() {
         Connection connectDB = DatabaseConnection.getInstance();
 
-        String verifyLogin = "SELECT count(1) FROM user_account WHERE emailaddress = '" + emailTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'" ;
+        String verifyLogin = "SELECT count(1), account_id FROM user_account WHERE emailaddress = '" + emailTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'" ;
 
         try {
 
@@ -105,7 +105,9 @@ public class LoginController implements Initializable {
 
             while(queryResult.next()) {
                 if(queryResult.getInt(1) == 1){
-//                    loginMessageLabel.setText("Welcome to Gamer Guard!");
+
+                    int userId = queryResult.getInt("account_id");
+                    SessionInfo.setUserId(userId);
                     openDashboard();
 
                 } else {
@@ -120,7 +122,7 @@ public class LoginController implements Initializable {
 
 
     public void openDashboard() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("profile-settings.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.setScene(scene);
