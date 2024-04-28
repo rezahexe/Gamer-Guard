@@ -96,7 +96,6 @@ public class ProfileSettingsController implements Initializable {
     }
 
     private void changepasswordButtonOnAction(MouseEvent mouseEvent) {
-
         try {
             System.out.println("Testing change password open new sinwpsiowiwpodi >:3");
 
@@ -104,14 +103,12 @@ public class ProfileSettingsController implements Initializable {
             Stage otpStage = new Stage();
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
             otpStage.setScene(scene);
-            TermsAndConditionsController controller = fxmlLoader.getController();
+            OTPController controller = fxmlLoader.getController();
             otpStage.show();
-
         } catch (IOException ex) {
             // Handle the IOException
             ex.printStackTrace();
         }
-
     }
 
     private void deleteButtonOnAction(MouseEvent mouseEvent) {

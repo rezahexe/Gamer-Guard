@@ -29,7 +29,7 @@
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Button style="-fx-background-color: F0EADA;" text="Verify">
+      <Button fx:id="verifyButton" onAction="#verifyButtonOnAction" style="-fx-background-color: F0EADA;" text="Verify">
          <font>
             <Font size="15.0" />
          </font></Button>

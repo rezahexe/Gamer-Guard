@@ -14,7 +14,6 @@ public class HelloApplication extends Application {
     public static final int WIDTH = 1080;
     public static final int HEIGHT = 720;
 
-
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
