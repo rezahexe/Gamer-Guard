@@ -27,6 +27,7 @@ import java.net.URL;
 public class ProfileSettingsController implements Initializable {
 
     public Label btnTXT_change_password;
+    public Rectangle btnBG_change_password;
     public Label btnTXT_delete_account;
     public Rectangle btnBG_delete_account;
     public Text text_display_username;
@@ -65,8 +66,8 @@ public class ProfileSettingsController implements Initializable {
         Image logoImage = new Image(logoFile.toURI().toString());
         logoImageView.setImage(logoImage);
 
-        int userId = SessionInfo.getUserId();
-        text_display_username.setText(String.valueOf(userId));
+        String userName = SessionInfo.getUserName();
+        text_display_username.setText(userName);
 
         File logoFile0 = new File("Images/button_back.png");
         Image logoImage0 = new Image(logoFile0.toURI().toString());
@@ -80,8 +81,37 @@ public class ProfileSettingsController implements Initializable {
         Image logoImage2 = new Image(logoFile2.toURI().toString());
         logoImageView2.setImage(logoImage2);
 
+        btnTXT_change_password.setOnMouseClicked(this::changepasswordButtonOnAction);
+        btnBG_change_password.setOnMouseClicked(this::changepasswordButtonOnAction);
+
         btnTXT_delete_account.setOnMouseClicked(this::deleteButtonOnAction);
         btnBG_delete_account.setOnMouseClicked(this::deleteButtonOnAction);
+    }
+
+    @FXML
+    public void backButtonOnAction() {
+        System.out.println("Testing close window >:3");
+        Stage stage = (Stage) button_back.getScene().getWindow();
+        stage.close();
+    }
+
+    private void changepasswordButtonOnAction(MouseEvent mouseEvent) {
+
+        try {
+            System.out.println("Testing change password open new sinwpsiowiwpodi >:3");
+
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("otp.fxml"));
+            Stage otpStage = new Stage();
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            otpStage.setScene(scene);
+            TermsAndConditionsController controller = fxmlLoader.getController();
+            otpStage.show();
+
+        } catch (IOException ex) {
+            // Handle the IOException
+            ex.printStackTrace();
+        }
+
     }
 
     private void deleteButtonOnAction(MouseEvent mouseEvent) {
@@ -112,11 +142,5 @@ public class ProfileSettingsController implements Initializable {
         }
     }
 
-    @FXML
-    public void backButtonOnAction() {
-        System.out.println("Testing close window >:3");
-        Stage stage = (Stage) button_back.getScene().getWindow();
-        stage.close();
-    }
 }
 
