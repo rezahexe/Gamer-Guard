@@ -5,6 +5,7 @@ module com.example.gamerguard {
     requires javafx.graphics;
     requires java.sql;
     requires java.desktop;
+    requires java.mail;
 
 
     opens com.example.gamerguard;
