@@ -30,41 +30,34 @@ public class OTPController {
     public Label OTPMessageLabel;
     public String otp = "empty otp";
     public TextField otpTextField;
+    private boolean otpVerified = false;
 
     Session newSession = null;
     MimeMessage mimeMessage = null;
 
+    public boolean isOtpVerified() {
+        return otpVerified;
+    }
     public void verifyButtonOnAction(javafx.event.ActionEvent actionEvent) {
         String userOTP = otpTextField.getText();
         if (userOTP.equals(otp)) {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("change-password.fxml"));
-                Stage passwordStage = new Stage();
-                Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-                passwordStage.setScene(scene);
-                ChangePasswordController controller = fxmlLoader.getController();
-
-                Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                currentStage.close();
-                passwordStage.show();
-            } catch (IOException ex) {
-                // Handle the IOException
-                ex.printStackTrace();
-            }
+            otpVerified = true; // Set verification status to true
+            Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            currentStage.close();
         } else{
             OTPMessageLabel.setText("Please enter the correct OTP.");
         }
     }
 
+
     public void sendOTPButtonOnAction(javafx.event.ActionEvent actionEvent) {
-        OTPMessageLabel.setText("OTP sending, please wait a moment...");
         try {
             setupServerProperties();
 
             String userEmail = SessionInfo.getUserEmail();
             otp = generateOTP(); // Update the class-level otp variable
             String[] emailRecipient = {userEmail};
-            String emailSubject = "OTP From GamerGuard";
+            String emailSubject = ">:3 I ran out of email for testing so you're my victim OTP From GamerGuard";
             String emailBody = otp;
             mimeMessage = new MimeMessage(newSession);
 
@@ -121,7 +114,7 @@ public class OTPController {
     public static String generateOTP() {
         int randomNum = (int) (Math.random() * 9000) + 1000;
         String otp = String.valueOf(randomNum);
-        System.out.println("OTP is " + otp);
+        //System.out.println("OTP is " + otp);
         return otp;
     }
 

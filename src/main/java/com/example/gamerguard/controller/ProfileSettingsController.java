@@ -2,6 +2,7 @@ package com.example.gamerguard.controller;
 
 import com.example.gamerguard.model.DatabaseConnection;
 import com.example.gamerguard.HelloApplication;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,17 +26,11 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 public class ProfileSettingsController implements Initializable {
-
     public Label btnTXT_change_password;
     public Rectangle btnBG_change_password;
     public Label btnTXT_delete_account;
     public Rectangle btnBG_delete_account;
     public Text text_display_username;
-    @FXML
-    private Button cancelButton;
-    @FXML
-    private Label loginMessageLabel;
-
 
     @FXML
     private ImageView logoImageView;
@@ -88,6 +83,7 @@ public class ProfileSettingsController implements Initializable {
         btnBG_delete_account.setOnMouseClicked(this::deleteButtonOnAction);
     }
 
+
     @FXML
     public void backButtonOnAction() {
         System.out.println("Testing close window >:3");
@@ -95,49 +91,53 @@ public class ProfileSettingsController implements Initializable {
         stage.close();
     }
 
+
     private void changepasswordButtonOnAction(MouseEvent mouseEvent) {
         try {
-            System.out.println("Testing change password open new sinwpsiowiwpodi >:3");
-
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("otp.fxml"));
             Stage otpStage = new Stage();
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
             otpStage.setScene(scene);
             OTPController controller = fxmlLoader.getController();
-            otpStage.show();
+            otpStage.showAndWait();
+            if (controller.isOtpVerified()) {
+                FXMLLoader passwordLoader = new FXMLLoader(HelloApplication.class.getResource("change-password.fxml"));
+                Stage passwordStage = new Stage();
+                Scene passwordScene = new Scene(passwordLoader.load(), 600, 400);
+                passwordStage.setScene(passwordScene);
+                passwordStage.show();
+            }
         } catch (IOException ex) {
-            // Handle the IOException
             ex.printStackTrace();
         }
     }
 
+
     private void deleteButtonOnAction(MouseEvent mouseEvent) {
-        System.out.println("Testing delete button >:3");
-
-        Connection connectDB = DatabaseConnection.getInstance();
-
-        int userId = SessionInfo.getUserId();
-        System.out.println(userId);
-
-        String deleteAccount = "DELETE FROM user_account WHERE account_Id = '" + userId + "'";
-
         try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("otp.fxml"));
+            Stage otpStage = new Stage();
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            otpStage.setScene(scene);
+            OTPController controller = fxmlLoader.getController();
+            otpStage.showAndWait();
+            if (controller.isOtpVerified()) {
+                Connection connectDB = DatabaseConnection.getInstance();
+                int userId = SessionInfo.getUserId();
+                System.out.println(userId);
+                String deleteAccount = "DELETE FROM user_account WHERE account_Id = '" + userId + "'";
+                try {
 
-            Statement statement = connectDB.createStatement();
-            int rowsAffected = statement.executeUpdate(deleteAccount);
-
-            if (rowsAffected > 0) {
-                System.out.println("Row deleted successfully >:3");
-                // Optionally, you can perform additional actions here if a row was successfully deleted
-            } else {
-                System.out.println("No rows were deleted :0");
-                // Optionally, you can handle the case where no rows were deleted
+                    Statement statement = connectDB.createStatement();
+                    int rowsAffected = statement.executeUpdate(deleteAccount);
+                    Platform.exit();
+                } catch (SQLException ex) {
+                    System.err.println(ex);
+                }
             }
-
-        } catch (SQLException ex) {
-            System.err.println(ex);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
-
 }
 
