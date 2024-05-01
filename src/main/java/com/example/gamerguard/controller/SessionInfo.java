@@ -3,6 +3,7 @@ package com.example.gamerguard.controller;
 public class SessionInfo {
     private static int userId;
     private static String userName;
+    private static String userEmail;
 
     public static int getUserId() {
         return userId;
@@ -18,5 +19,11 @@ public class SessionInfo {
         userName = name;
     }
 
+    public static String getUserEmail() {
+        return userEmail;
+    }
+    public static void setUserEmail(String name) {
+        userEmail = name;
+    }
 }
 

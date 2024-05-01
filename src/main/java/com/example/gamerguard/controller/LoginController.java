@@ -96,7 +96,7 @@ public class LoginController implements Initializable {
     public void validateLogin() {
         Connection connectDB = DatabaseConnection.getInstance();
 
-        String verifyLogin = "SELECT count(1), account_id, firstname FROM user_account WHERE emailaddress = '" + emailTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'" ;
+        String verifyLogin = "SELECT count(1), account_id, firstname, emailaddress FROM user_account WHERE emailaddress = '" + emailTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'" ;
 
         try {
 
@@ -110,6 +110,8 @@ public class LoginController implements Initializable {
                     SessionInfo.setUserId(userId);
                     String userName = queryResult.getString("firstname");
                     SessionInfo.setUserName(userName);
+                    String userEmail = queryResult.getString("emailaddress");
+                    SessionInfo.setUserEmail(userEmail);
                     openDashboard();
 
                 } else {
