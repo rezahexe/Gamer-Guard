@@ -35,13 +35,25 @@ public class OTPController {
     Session newSession = null;
     MimeMessage mimeMessage = null;
 
+
+    /**
+     * Return True so that the next page may be opened.
+     * @return True
+     */
     public boolean isOtpVerified() {
         return otpVerified;
     }
+
+
+    /**
+     * Checks for correct user OTP input.
+     * Otherwise, update message label and inform incorrect OTP.
+     * @param actionEvent Button click
+     */
     public void verifyButtonOnAction(javafx.event.ActionEvent actionEvent) {
         String userOTP = otpTextField.getText();
         if (userOTP.equals(otp)) {
-            otpVerified = true; // Set verification status to true
+            otpVerified = true;
             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             currentStage.close();
         } else{
@@ -50,14 +62,21 @@ public class OTPController {
     }
 
 
+    /**
+     * Sets up email content.
+     * Send OTP email to user email.
+     * Update labels to inform user of status, successful or unsuccessful.
+     * @param actionEvent Button click
+     */
     public void sendOTPButtonOnAction(javafx.event.ActionEvent actionEvent) {
         try {
             setupServerProperties();
 
             String userEmail = SessionInfo.getUserEmail();
-            otp = generateOTP(); // Update the class-level otp variable
+            otp = generateOTP();
+            // - Email content
             String[] emailRecipient = {userEmail};
-            String emailSubject = ">:3 I ran out of email for testing so you're my victim OTP From GamerGuard";
+            String emailSubject = "OTP From GamerGuard";
             String emailBody = otp;
             mimeMessage = new MimeMessage(newSession);
 
@@ -83,13 +102,14 @@ public class OTPController {
     }
 
 
-
+    /**
+     * Information of email account that sends OTP email.
+     */
     void sendEmail() {
         String fromUser = "phoebecode@gmail.com";  //new throwaway account created for this assignment
         String fromUserPassword = "uihb qius vzzx gvwg";  //app password
         String emailHost = "smtp.gmail.com";
         Transport transport = null;
-
         try {
             transport = newSession.getTransport("smtp");
             transport.connect(emailHost, fromUser, fromUserPassword);
@@ -111,6 +131,10 @@ public class OTPController {
     }
 
 
+    /**
+     * Generate random 4 digit OTP.
+     * @return OTP number
+     */
     public static String generateOTP() {
         int randomNum = (int) (Math.random() * 9000) + 1000;
         String otp = String.valueOf(randomNum);
@@ -119,6 +143,11 @@ public class OTPController {
     }
 
 
+    /**
+     * Uses javax.mail to send email.
+     * Set port 587 for SMTP communication.
+     * Enable authenticaion and TLS to true.
+     */
     void setupServerProperties() {
         Properties properties = System.getProperties();
         properties.put("mail.smtp.port", "587");

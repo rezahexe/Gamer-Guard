@@ -25,18 +25,25 @@ public class ChangePasswordController {
     @FXML
     private Label resetPasswordMessageLabel;
 
+    /**
+     * Closes change-password page.
+     * @param event Button click
+     */
     public void cancelButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
 
-    public void confirmPasswordButtonOnAction(ActionEvent actionEvent) {
-        System.out.println("Comfirm buttosduosaud pressed dyguey >:2");
 
+    /**
+     * Connects database and get user ID from session information.
+     * Updates password when two password is filled out and is the same.
+     * @param actionEvent Button click
+     */
+    public void confirmPasswordButtonOnAction(ActionEvent actionEvent) {
         Connection connectDB = DatabaseConnection.getInstance();
 
         int userId = SessionInfo.getUserId();
-
         String newPassword = newPasswordField.getText();
         String confirmNewPassword = confirmNewPasswordField.getText();
 
@@ -44,11 +51,9 @@ public class ChangePasswordController {
             resetPasswordMessageLabel.setText("Fill all the fields to reset your password");
             return;
         }
-
         try {
             Statement statement = connectDB.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM user_account WHERE account_id = '" +userId + "'");
-
             if (!newPassword.equals(confirmNewPassword)) {
                 resetPasswordMessageLabel.setText("Passwords do not match");
                 return;
@@ -56,7 +61,6 @@ public class ChangePasswordController {
             statement.executeUpdate("UPDATE user_account SET password = '" + newPassword + "' WHERE account_id = '" + userId + "'");
             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             currentStage.close();
-
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();

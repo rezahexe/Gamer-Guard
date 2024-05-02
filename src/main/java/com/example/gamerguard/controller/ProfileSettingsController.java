@@ -31,7 +31,6 @@ public class ProfileSettingsController implements Initializable {
     public Label btnTXT_delete_account;
     public Rectangle btnBG_delete_account;
     public Text text_display_username;
-
     @FXML
     private ImageView logoImageView;
     @FXML
@@ -40,8 +39,6 @@ public class ProfileSettingsController implements Initializable {
     private ImageView logoImageView1;
     @FXML
     private ImageView logoImageView2;
-
-
     @FXML
     private TextField emailTextField;
     @FXML
@@ -49,10 +46,9 @@ public class ProfileSettingsController implements Initializable {
 
 
     /**
-     * Initializes the controller with the Gamer Guard logo image.
-     * Loads the logo image from the specified file path and sets it
-     * as the image source for the logoImageView.
-     *
+     * Initializes the controller.
+     * Loads the logo images from the specified file path and sets it
+     * as the image source. Set event handlers for mouse click events on buttons.
      * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
      * @param resourceBundle The resource bundle that contains localized objects for the controller, or null if there is no resource bundle.
      */
@@ -84,6 +80,10 @@ public class ProfileSettingsController implements Initializable {
     }
 
 
+    /**
+     * Opens the dashboard window and closes the current page.
+     */
+    //------------------------------------------------EIFIE FIX---------------------------------------------------------
     @FXML
     public void backButtonOnAction() {
         System.out.println("Testing close window >:3");
@@ -92,6 +92,10 @@ public class ProfileSettingsController implements Initializable {
     }
 
 
+    /**
+     * Opens opt page, when OTP verifies and returns true, opens change-password page.
+     * @param mouseEvent Mouse click
+     */
     private void changepasswordButtonOnAction(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("otp.fxml"));
@@ -113,6 +117,10 @@ public class ProfileSettingsController implements Initializable {
     }
 
 
+    /**
+     * Opens opt page, when OTP verifies and returns true, delete user account and closes program.
+     * @param mouseEvent Mouse click
+     */
     private void deleteButtonOnAction(MouseEvent mouseEvent) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("otp.fxml"));
@@ -127,7 +135,6 @@ public class ProfileSettingsController implements Initializable {
                 System.out.println(userId);
                 String deleteAccount = "DELETE FROM user_account WHERE account_Id = '" + userId + "'";
                 try {
-
                     Statement statement = connectDB.createStatement();
                     int rowsAffected = statement.executeUpdate(deleteAccount);
                     Platform.exit();
