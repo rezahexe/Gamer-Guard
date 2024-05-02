@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+      <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="874.0" layoutX="-39.0" layoutY="-64.0" stroke="BLACK" strokeType="INSIDE" width="1339.0" />
+            <Rectangle arcHeight="45.0" arcWidth="45.0" fill="#f0eada" height="496.0" layoutX="153.0" layoutY="92.0" stroke="BLACK" strokeType="INSIDE" width="717.0" />
+            <Label layoutX="414.0" layoutY="112.0" text="Appearance / theme">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="246.0" layoutY="177.0" text="Appearance">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label layoutX="246.0" layoutY="265.0" text="Theme">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="246.0" layoutY="213.0" mnemonicParsing="false" text="Light mode" />
+            <Button layoutX="347.0" layoutY="213.0" mnemonicParsing="false" text="Dark mode" />
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>

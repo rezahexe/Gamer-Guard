@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamerguard.controller.SettingsController">
+    <!-- Specify the controller class here -->
+    <children>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="539.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
+            <children>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="874.0" layoutX="-39.0" layoutY="-64.0" stroke="BLACK" strokeType="INSIDE" width="1339.0" />
+                <Rectangle arcHeight="45.0" arcWidth="45.0" fill="#f0eada" height="496.0" layoutX="153.0" layoutY="92.0" stroke="BLACK" strokeType="INSIDE" width="717.0" />
+                <Label layoutX="469.0" layoutY="112.0" text="Settings">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label layoutX="246.0" layoutY="177.0" text="App settings">
+                    <font>
+                        <Font size="14.0" />
+                    </font></Label>
+                <Button layoutX="249.0" layoutY="212.0" mnemonicParsing="false" text="Appearance / theme" onAction="#handleAppearanceTheme"/>
+                <Button layoutX="251.0" layoutY="249.0" mnemonicParsing="false" text="Notifications"  onAction="#handleNotifications"/>
+                <Button layoutX="253.0" layoutY="285.0" mnemonicParsing="false" text="Accessibility" onAction="#handleAccessibility"/>
+                <Button layoutX="251.0" layoutY="321.0" mnemonicParsing="false" text="Privacy and security" onAction="#handlePrivacyandSettings"/>
+                <Button layoutX="250.0" layoutY="360.0" mnemonicParsing="false" text="Display" onAction="#handleDisplay"/>
+                <Button layoutX="251.0" layoutY="401.0" mnemonicParsing="false" text="Language" onAction="#handleLanguage"/>
+                <Button layoutX="250.0" layoutY="441.0" mnemonicParsing="false" text="Help and support" onAction="#handleHelpandSupport"/>
+                <Button layoutX="246.0" layoutY="483.0" mnemonicParsing="false" text="About" onAction="#handleAbout"/>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>
