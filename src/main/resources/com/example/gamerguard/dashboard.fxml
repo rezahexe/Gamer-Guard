@@ -1,15 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #D80567;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamerguard.controller.DashboardController">
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.gamerguard.controller.DashboardController"
+            style="-fx-background-color: #F0EADA;"
+            prefWidth="1080" prefHeight="720">
+
+   <!-- Header Section -->
+   <top>
+      <HBox spacing="10" padding="15">
+         <children>
+            <Label text="DASHBOARD" />
+            <Label text="000 points" />
+            <Button text="?" style="-fx-background-color: #D80567; -fx-text-fill: black;" />
+            <Button text="Settings" style="-fx-background-color: #D80567; -fx-text-fill: black;" />
+            <Button text="Profile" style="-fx-background-color: #D80567; -fx-text-fill: black;" />
+            <Label text="Username_123" />
+         </children>
+      </HBox>
+   </top>
+
+   <!-- Center Section -->
    <center>
-      <Label text="This label has been placed just to let you know that your DASHBOARD OPENED YAYYYYYY!!!" textFill="WHITE" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </Label>
+      <VBox spacing="20" alignment="CENTER" padding="20">
+         <children>
+            <Button text="Games" style="-fx-background-color: #541386; -fx-text-fill: black; -fx-font-size: 40px;" />
+            <Button text="Activity" style="-fx-background-color: #D80567; -fx-text-fill: black; -fx-font-size: 40px;" />
+            <Button text="Playlist" style="-fx-background-color: #2D294C; -fx-text-fill: black; -fx-font-size: 40px;" />
+            <Button text="Friends" style="-fx-background-color: #FFD40C; -fx-text-fill: black; -fx-font-size: 40px;" />
+         </children>
+      </VBox>
    </center>
+
+   <!-- Bottom Section -->
+   <bottom>
+      <HBox spacing="10" alignment="CENTER" padding="10">
+         <children>
+            <Label fx:id="timerLabel" text="Timer: 0 seconds" />
+            <Button text="Start Timer" style="-fx-background-color: #D80567; -fx-text-fill: black;" onAction="#startTimer" />
+            <Button text="Stop Timer" style="-fx-background-color: #D80567; -fx-text-fill: black;" onAction="#stopTimer" />
+            <Button text="Reset Timer" style="-fx-background-color: #D80567; -fx-text-fill: black;" onAction="#resetTimer" />
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>
