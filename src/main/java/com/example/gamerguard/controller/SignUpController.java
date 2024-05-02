@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
@@ -63,26 +64,37 @@ public class SignUpController implements Initializable {
 
 
     public void registerUser() {
-        Connection connectDB = DatabaseConnection.getInstance();
+        try (Connection connectDB = DatabaseConnection.getInstance()) {
+            String firstname = firstnameTextField.getText();
+            String lastname = lastnameTextField.getText();
+            String emailaddress = emailTextField.getText();
+            String password = setPasswordField.getText();
 
-        String firstname = firstnameTextField.getText();
-        String lastname = lastnameTextField.getText();
-        String emailaddress = emailTextField.getText();
-        String password = setPasswordField.getText();
+            String insertFields = "INSERT INTO user_account(firstname, lastname, emailaddress, password) VALUES ('";
+            String insertValues = firstname + "','" + lastname + "','" + emailaddress + "','" + password + "')";
+            String insertToRegister = insertFields + insertValues;
 
-        String insertFields = "INSERT INTO user_account(firstname, lastname, emailaddress, password) VALUES ('";
-        String insertValues = firstname + "','"+ lastname + "','" + emailaddress + "','" + password + "')";
-        String insertToRegister = insertFields + insertValues;
-
-        try {
-            Statement statement = connectDB.createStatement();
-            statement.executeUpdate(insertToRegister);
-
-            registerMessageLabel.setText("Registered successfully!");
-
-        } catch (Exception e) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("outterotp.fxml"));
+                Stage otpStage = new Stage();
+                Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+                otpStage.setScene(scene);
+                OutterOTPController controller = fxmlLoader.getController();
+                controller.setEmail(emailaddress);
+                otpStage.showAndWait();
+                if (controller.isOtpVerified()) {
+                    try (Statement statement = connectDB.createStatement()) {
+                        statement.executeUpdate(insertToRegister);
+                        registerMessageLabel.setText("Registered successfully!");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
-            e.getCause();
         }
     }
 
@@ -112,6 +124,10 @@ public class SignUpController implements Initializable {
             registerUser();
 
             try {
+//                Stage stage = (Stage) loginHyperlink.getScene().getWindow();
+//                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+//                Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+//                stage.setScene(scene);
                 openDashboard();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -135,7 +151,7 @@ public class SignUpController implements Initializable {
     }
 
     public void openDashboard() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         Stage stage = (Stage) registerButton.getScene().getWindow();
         stage.setScene(scene);

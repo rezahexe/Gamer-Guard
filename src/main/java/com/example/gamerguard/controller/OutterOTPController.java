@@ -1,30 +1,24 @@
 package com.example.gamerguard.controller;
 
-import com.example.gamerguard.HelloApplication;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import java.util.Properties;
 
-public class OTPController {
+public class OutterOTPController {
+    private String email;
     public Label otpField;
     public Button verifyButton;
     public Label OTPMessageLabel;
@@ -35,7 +29,6 @@ public class OTPController {
     Session newSession = null;
     MimeMessage mimeMessage = null;
 
-
     /**
      * Return True so that the next page may be opened.
      * @return True
@@ -45,12 +38,17 @@ public class OTPController {
     }
 
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
     /**
      * Checks for correct user OTP input.
      * Otherwise, update message label and inform incorrect OTP.
      * @param actionEvent Button click
      */
-    public void verifyButtonOnAction(javafx.event.ActionEvent actionEvent) {
+    public void verifyButtonOnAction(ActionEvent actionEvent) {
         String userOTP = otpTextField.getText();
         if (userOTP.equals(otp)) {
             otpVerified = true;
@@ -68,14 +66,13 @@ public class OTPController {
      * Update labels to inform user of status, successful or unsuccessful.
      * @param actionEvent Button click
      */
-    public void sendOTPButtonOnAction(javafx.event.ActionEvent actionEvent) {
+    public void sendOTPButtonOnAction(ActionEvent actionEvent) {
         try {
             setupServerProperties();
 
-            String userEmail = SessionInfo.getUserEmail();
             otp = generateOTP();
             // - Email content
-            String[] emailRecipient = {userEmail};
+            String[] emailRecipient = {email};
             String emailSubject = "OTP From GamerGuard";
             String emailBody = otp;
             mimeMessage = new MimeMessage(newSession);
