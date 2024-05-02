@@ -123,5 +123,22 @@ public class SettingsController {
         }
     }
 
+    @FXML
+    private void handleAbout() {
+        try {
+            // Load the FXML file
+            Parent root = FXMLLoader.load(getClass().getResource("About.fxml"));
+
+            // Create a new stage
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+    }
+
 }
 

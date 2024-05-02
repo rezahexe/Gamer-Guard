@@ -30,7 +30,7 @@
                 <Button layoutX="250.0" layoutY="360.0" mnemonicParsing="false" text="Display" onAction="#handleDisplay"/>
                 <Button layoutX="251.0" layoutY="401.0" mnemonicParsing="false" text="Language" onAction="#handleLanguage"/>
                 <Button layoutX="250.0" layoutY="441.0" mnemonicParsing="false" text="Help and support" onAction="#handleHelpandSupport"/>
-                <Button layoutX="246.0" layoutY="483.0" mnemonicParsing="false" text="About"/>
+                <Button layoutX="246.0" layoutY="483.0" mnemonicParsing="false" text="About" onAction="#handleAbout"/>
             </children>
         </AnchorPane>
     </children>
