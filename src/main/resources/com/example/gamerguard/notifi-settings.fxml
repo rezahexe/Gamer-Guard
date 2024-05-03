@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamerguard.controller.NotifiSettingsController">
+
+   <left>
+      <AnchorPane prefHeight="400.0" prefWidth="150.0" style="-fx-background-color: #2D294C;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="150.0" style="-fx-background-color: #2D294C;" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #F0EADA;" BorderPane.alignment="CENTER">
+         <content>
+            <AnchorPane prefHeight="862.0" prefWidth="764.0" style="-fx-background-color: #F0EADA;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="34.0" layoutY="448.0" prefHeight="20.0" prefWidth="200.0" textFill="RED">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="37.0" layoutX="14.0" layoutY="487.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="735.0" />
+
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="37.0" layoutX="14.0" layoutY="414.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="736.0" />
+                  <Label layoutX="28.0" layoutY="420.0" prefHeight="26.0" prefWidth="210.0" text="Productivity App List:" textFill="#f7fcf1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="32.0" layoutY="457.0" text="Microsoft Teams">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="34.0" layoutY="493.0" text="Adobe PDF" textFill="#f8f8f8">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="530.0" text="Zoom">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="6.0" layoutX="15.0" layoutY="561.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="735.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="122.0" layoutX="744.0" layoutY="444.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="6.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="122.0" layoutX="14.0" layoutY="444.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="6.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="37.0" layoutX="13.0" layoutY="592.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="735.0" />
+                  <Label layoutX="26.0" layoutY="598.0" text="Games app list: Games linked to steam" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="702.0" layoutY="602.0" textFill="#fffefe" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="37.0" layoutX="13.0" layoutY="648.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="735.0" />
+                  <Label layoutX="30.0" layoutY="652.0" text="Distraction app list" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="719.0" layoutY="646.0" text="+" textFill="WHITE">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="71.0" layoutY="22.0" text="Notification">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="30.0" layoutY="20.0" text="&lt;">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="459.0" layoutY="104.0" text="Study Reminder">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="71.0" layoutY="261.0" text="Customise Reminder">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="73.0" layoutY="177.0" text="Break Reminder">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="72.0" layoutY="100.0" text="Hydration Reminder">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="460.0" layoutY="180.0" text="Notification Sound">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="316.0" layoutY="257.0" text="+">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <RadioButton layoutX="318.0" layoutY="108.0" mnemonicParsing="false" />
+                  <RadioButton layoutX="318.0" layoutY="183.0" mnemonicParsing="false" />
+                  <RadioButton layoutX="698.0" layoutY="110.0" mnemonicParsing="false" />
+                  <RadioButton layoutX="700.0" layoutY="188.0" mnemonicParsing="false" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

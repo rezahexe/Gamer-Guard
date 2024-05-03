@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamerguard.controller.TimerController">
+    <left>
+        <AnchorPane prefHeight="720.0" prefWidth="178.0" style="-fx-background-color: #2D294C;" BorderPane.alignment="CENTER" />
+    </left>
+    <right>
+        <AnchorPane prefHeight="720.0" prefWidth="204.0" style="-fx-background-color: #2D294C;" BorderPane.alignment="CENTER" />
+    </right>
+    <center>
+        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #F0EADA;" BorderPane.alignment="CENTER">
+            <content>
+                <AnchorPane prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: #F0EADA;" BorderPane.alignment="CENTER">
+                    <children>
+                        <TabPane layoutX="25.0" layoutY="20.0" prefHeight="436.0" prefWidth="609.0" tabClosingPolicy="UNAVAILABLE">
+                            <tabs>
+                                <Tab text="X" />
+                                <Tab text="-" />
+                            </tabs>
+                        </TabPane>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="4.0" layoutX="23.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="609.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="5.0" layoutX="24.0" layoutY="452.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="609.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="435.0" layoutX="628.0" layoutY="19.0" stroke="BLACK" strokeType="INSIDE" width="5.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="436.0" layoutX="21.0" layoutY="20.0" stroke="BLACK" strokeType="INSIDE" width="4.0" />
+                        <Label layoutX="244.0" layoutY="79.0" text="OPPS!!!">
+                            <font>
+                                <Font size="60.0" />
+                            </font>
+                        </Label>
+                        <Button layoutX="129.0" layoutY="291.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="144.0" text="close">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Button>
+                        <Button layoutX="386.0" layoutY="291.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="144.0" text="settings">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Button>
+                        <Label layoutX="122.0" layoutY="210.0" text="This is a reminder for you to take a break">
+                            <font>
+                                <Font size="25.0" />
+                            </font>
+                        </Label>
+                    </children></AnchorPane>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
