@@ -17,22 +17,22 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="246.0" layoutY="174.0" text="About Gamer Guard">
+            <Label layoutX="205.0" layoutY="172.0" text="About Gamer Guard">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="246.0" layoutY="214.0" prefHeight="83.0" prefWidth="575.0" text="Gamer Guard is a Java application aimed at assisting gamers in managing their gaming time effectively while promoting healthy gaming habits. The application will include features such as gaming time tracking, reminder systems, and recommendations for maintaining balanced gaming habits." wrapText="true">
+            <Label layoutX="205.0" layoutY="212.0" prefHeight="83.0" prefWidth="575.0" text="Gamer Guard is a Java application aimed at assisting gamers in managing their gaming time effectively while promoting healthy gaming habits. The application will include features such as gaming time tracking, reminder systems, and recommendations for maintaining balanced gaming habits." wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="246.0" layoutY="340.0" text="Target audience">
+            <Label layoutX="205.0" layoutY="340.0" text="Target audience">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="246.0" layoutY="373.0" text="Gamers of all ages and backgrounds">
+            <Label layoutX="217.0" layoutY="373.0" text="Gamers of all ages and backgrounds">
                <font>
                   <Font size="14.0" />
                </font>

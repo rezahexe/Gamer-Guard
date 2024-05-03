@@ -23,14 +23,14 @@
                     <font>
                         <Font size="14.0" />
                     </font></Label>
-                <Button layoutX="249.0" layoutY="212.0" mnemonicParsing="false" text="Appearance / theme" onAction="#handleAppearanceTheme"/>
-                <Button layoutX="251.0" layoutY="249.0" mnemonicParsing="false" text="Notifications"  onAction="#handleNotifications"/>
-                <Button layoutX="253.0" layoutY="285.0" mnemonicParsing="false" text="Accessibility" onAction="#handleAccessibility"/>
-                <Button layoutX="251.0" layoutY="321.0" mnemonicParsing="false" text="Privacy and security" onAction="#handlePrivacyandSettings"/>
-                <Button layoutX="250.0" layoutY="360.0" mnemonicParsing="false" text="Display" onAction="#handleDisplay"/>
-                <Button layoutX="251.0" layoutY="401.0" mnemonicParsing="false" text="Language" onAction="#handleLanguage"/>
-                <Button layoutX="250.0" layoutY="441.0" mnemonicParsing="false" text="Help and support" onAction="#handleHelpandSupport"/>
-                <Button layoutX="246.0" layoutY="483.0" mnemonicParsing="false" text="About" onAction="#handleAbout"/>
+                <Button fx:id="AppearanceThemeButton" layoutX="249.0" layoutY="212.0" mnemonicParsing="false" text="Appearance / theme" onAction="#AppearanceThemeButtonOnAction"/>
+                <Button fx:id="NotificationsButton" layoutX="251.0" layoutY="249.0" mnemonicParsing="false" text="Notifications"  onAction="#NotificationsOnAction"/>
+                <Button fx:id="AccessibilityButton" layoutX="253.0" layoutY="285.0" mnemonicParsing="false" text="Accessibility" onAction="#AccessibilityOnAction"/>
+                <Button fx:id="PrivacyandSecurityButton" layoutX="251.0" layoutY="321.0" mnemonicParsing="false" text="Privacy and security" onAction="#PrivacyandSecurityOnAction"/>
+                <Button fx:id="DisplayButton" layoutX="250.0" layoutY="360.0" mnemonicParsing="false" text="Display" onAction="#DisplayOnAction"/>
+                <Button fx:id="LanguageButton" layoutX="251.0" layoutY="401.0" mnemonicParsing="false" text="Language" onAction="#LanguageOnAction"/>
+                <Button fx:id="HelpandSupportButton" layoutX="250.0" layoutY="441.0" mnemonicParsing="false" text="Help and support" onAction="#HelpandSupportOnAction"/>
+                <Button fx:id="AboutButton" layoutX="246.0" layoutY="483.0" mnemonicParsing="false" text="About" onAction="#AboutOnAction"/>
             </children>
         </AnchorPane>
     </children>
