@@ -40,7 +40,7 @@ public class SettingsController {
         private void NotificationsOnAction(ActionEvent event) throws IOException {
             // Load the FXML file
             Stage stage = (Stage) NotificationsButton.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Notification.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("notifi-settings.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
             stage.setScene(scene);
         }
