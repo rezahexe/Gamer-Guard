@@ -4,10 +4,17 @@ import com.example.gamerguard.HelloApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
+
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class SettingsController {
     @FXML
@@ -27,6 +34,21 @@ public class SettingsController {
     @FXML
     private Button AboutButton;
 
+    //Back button code
+    @FXML
+    private ImageView BackButton;
+    public void initialize(URL location, ResourceBundle resources) {
+        File logoFile0 = new File("Images/button_back.png");
+        Image logoImage0 = new Image(logoFile0.toURI().toString());
+        BackButton.setImage(logoImage0);
+    }
+
+    @FXML
+    public void BackOnAction(MouseEvent event) throws IOException {
+        Stage stage = (Stage) BackButton.getScene().getWindow();
+        stage.close();
+    }
+
     @FXML
     private void AppearanceThemeButtonOnAction(ActionEvent event) throws IOException {
         // Load the FXML file
@@ -36,14 +58,14 @@ public class SettingsController {
         stage.setScene(scene);
     }
 
-        @FXML
-        private void NotificationsOnAction(ActionEvent event) throws IOException {
-            // Load the FXML file
-            Stage stage = (Stage) NotificationsButton.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("notifi-settings.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-            stage.setScene(scene);
-        }
+    @FXML
+    private void NotificationsOnAction(ActionEvent event) throws IOException {
+         // Load the FXML file
+         Stage stage = (Stage) NotificationsButton.getScene().getWindow();
+         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("notifi-settings.fxml"));
+         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+         stage.setScene(scene);
+    }
 
     @FXML
     private void AccessibilityOnAction(ActionEvent event) throws IOException {
