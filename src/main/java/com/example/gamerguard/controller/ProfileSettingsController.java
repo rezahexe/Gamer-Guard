@@ -25,7 +25,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.net.URL;
 
-public class ProfileSettingsController implements Initializable {
+public class ProfileSettingsController {
     public Label btnTXT_change_password;
     public Rectangle btnBG_change_password;
     public Label btnTXT_delete_account;
