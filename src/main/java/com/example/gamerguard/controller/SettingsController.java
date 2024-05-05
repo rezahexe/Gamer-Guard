@@ -45,8 +45,10 @@ public class SettingsController {
 
     @FXML
     public void BackOnAction(MouseEvent event) throws IOException {
-        Stage stage = (Stage) BackButton.getScene().getWindow();
-        stage.close();
+        Stage stage = (Stage) AppearanceThemeButton.getScene().getWindow();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        stage.setScene(scene);
     }
 
     @FXML

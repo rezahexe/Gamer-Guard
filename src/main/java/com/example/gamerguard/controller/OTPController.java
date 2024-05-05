@@ -138,7 +138,7 @@ public class OTPController {
     public static String generateOTP() {
         int randomNum = (int) (Math.random() * 9000) + 1000;
         String otp = String.valueOf(randomNum);
-        //System.out.println("OTP is " + otp);
+        System.out.println("OTP is " + otp); //Comment this out
         return otp;
     }
 

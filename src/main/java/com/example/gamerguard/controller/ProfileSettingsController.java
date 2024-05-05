@@ -25,7 +25,7 @@ import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.net.URL;
 
-public class ProfileSettingsController {
+public class ProfileSettingsController implements Initializable {
     public Label btnTXT_change_password;
     public Rectangle btnBG_change_password;
     public Label btnTXT_delete_account;
@@ -85,10 +85,11 @@ public class ProfileSettingsController {
      */
     //------------------------------------------------EIFIE FIX---------------------------------------------------------
     @FXML
-    public void backButtonOnAction() {
-        System.out.println("Testing close window >:3");
+    public void backButtonOnAction() throws IOException {
         Stage stage = (Stage) button_back.getScene().getWindow();
-        stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        stage.setScene(scene);
     }
 
 
@@ -147,4 +148,3 @@ public class ProfileSettingsController {
         }
     }
 }
-
