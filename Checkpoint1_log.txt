@@ -1,5 +1,0 @@
-commit f23c21c58ff3d6d18f117fe74e0b6cc6f710735a
-Author: Bernie <n11188073@qut.edu.au>
-Date:   Mon Mar 25 15:13:05 2024 +1000
-
-    Checkpoint 1, not much code yet
