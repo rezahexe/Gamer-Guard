@@ -52,8 +52,27 @@ public class DashboardController implements Initializable {
 
     @FXML
     private void resetTimer(ActionEvent event) {
-        stopTimer(event); // Stop the timer
-        secondsElapsed = 0;
-        timerLabel.setText("Timer: 0 seconds");
+
+    }
+
+    public void gamesButtonOnAction(ActionEvent event) {
+    }
+
+    public void activityButtonOnAction(ActionEvent event) {
+    }
+
+    public void playlistButtonOnAction(ActionEvent event) {
+    }
+
+    public void friendsButtonOnAction(ActionEvent event) {
+    }
+
+    public void settingsButtonOnAction(ActionEvent event) {
+    }
+
+    public void profileButtonOnAction(ActionEvent event) {
+    }
+
+    public void infoButtonOnAction(ActionEvent event) {
     }
 }
