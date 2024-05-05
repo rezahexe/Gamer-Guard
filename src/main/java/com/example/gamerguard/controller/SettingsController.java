@@ -3,6 +3,7 @@ package com.example.gamerguard.controller;
 import com.example.gamerguard.HelloApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,7 +17,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SettingsController {
+public class SettingsController implements Initializable {
     @FXML
     private Button AppearanceThemeButton;
     @FXML
@@ -46,7 +47,7 @@ public class SettingsController {
     @FXML
     public void BackOnAction(MouseEvent event) throws IOException {
         Stage stage = (Stage) AppearanceThemeButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
