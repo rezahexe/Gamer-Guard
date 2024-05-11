@@ -71,7 +71,11 @@ public class DashboardController implements Initializable {
         timerLabel.setText("Timer: 0 seconds");
     }
 
-    public void gamesButtonOnAction(ActionEvent event) {
+    public void gamesButtonOnAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("display-games.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        Stage stage = (Stage) profileButton.getScene().getWindow();
+        stage.setScene(scene);
     }
 
     public void activityButtonOnAction(ActionEvent event) {
