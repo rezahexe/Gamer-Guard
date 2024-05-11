@@ -1,4 +1,4 @@
-package com.example.gamerguard.controller;
+package com.example.gamerguard.other;
 
 public class SessionInfo {
     private static int userId;

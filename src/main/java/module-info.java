@@ -12,4 +12,5 @@ module com.example.gamerguard {
     opens com.example.gamerguard;
     opens com.example.gamerguard.controller;
     opens com.example.gamerguard.model;
+    opens com.example.gamerguard.other;
 }

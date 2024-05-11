@@ -2,6 +2,7 @@ package com.example.gamerguard.controller;
 
 import com.example.gamerguard.model.DatabaseConnection;
 import com.example.gamerguard.HelloApplication;
+import com.example.gamerguard.other.SessionInfo;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,12 +15,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;

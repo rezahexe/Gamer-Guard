@@ -47,7 +47,7 @@ public class SettingsController implements Initializable {
     @FXML
     public void BackOnAction(MouseEvent event) throws IOException {
         Stage stage = (Stage) AppearanceThemeButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
