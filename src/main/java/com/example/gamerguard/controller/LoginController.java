@@ -72,7 +72,6 @@ public class LoginController implements Initializable {
 
         } else {
             loginMessageLabel.setText("Please enter a username and password");
-
         }
     }
 

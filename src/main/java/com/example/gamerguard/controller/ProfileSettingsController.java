@@ -4,6 +4,7 @@ import com.example.gamerguard.model.DatabaseConnection;
 import com.example.gamerguard.HelloApplication;
 import com.example.gamerguard.other.SessionInfo;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,13 +19,13 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 import java.net.URL;
 
 public class ProfileSettingsController implements Initializable {
+    @FXML
+    private Button steamUpdateButton;
     public Label btnTXT_change_password;
     public Rectangle btnBG_change_password;
     public Label btnTXT_delete_account;
@@ -39,9 +40,9 @@ public class ProfileSettingsController implements Initializable {
     @FXML
     private ImageView logoImageView2;
     @FXML
-    private TextField emailTextField;
+    private TextField steamTextField;
     @FXML
-    private PasswordField passwordPasswordField;
+    private TextField spotifyTextField;
 
 
     /**
@@ -76,19 +77,95 @@ public class ProfileSettingsController implements Initializable {
 
         btnTXT_delete_account.setOnMouseClicked(this::deleteButtonOnAction);
         btnBG_delete_account.setOnMouseClicked(this::deleteButtonOnAction);
+
+        //Displays the user's steam ID in text box
+        int userId = SessionInfo.getUserId();
+        Connection connectDB = DatabaseConnection.getInstance();
+        String queryFindSteam = "SELECT user_steamId FROM user_steam WHERE user_id = ?";
+        try (PreparedStatement stmt = connectDB.prepareStatement(queryFindSteam)) {
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) { // User have steam Id
+                    String userSteamId = rs.getString("user_steamId");
+                    steamTextField.setText(userSteamId); // Steam ID found
+                } else { //User don't have steam Id
+                    steamTextField.setText("");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
     /**
      * Opens the dashboard window and closes the current page.
      */
-    //------------------------------------------------EIFIE FIX---------------------------------------------------------
     @FXML
     public void backButtonOnAction() throws IOException {
         Stage stage = (Stage) button_back.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
+    }
+
+
+    /**
+     * Updates or insert new record of user's Steam ID when click update Steam button.
+     * @param event ActionEvent triggered by clicking the login button.
+     */
+    public void steamUpdateButtonOnAction(ActionEvent event) {
+        if (!steamTextField.getText().isBlank())  {
+            int userId = SessionInfo.getUserId();
+            String newSteamId = steamTextField.getText();
+            Connection connectDB = DatabaseConnection.getInstance();
+            String queryFindSteam = "SELECT user_steamId FROM user_steam WHERE user_id = ?";
+            try (PreparedStatement stmt = connectDB.prepareStatement(queryFindSteam)) {
+                stmt.setInt(1, userId);
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) { // User have Steam ID (Update)
+                        String queryUpdateSteam = "UPDATE user_steam SET user_steamId = ? WHERE user_id = ?";
+                        try (PreparedStatement updateStmt = connectDB.prepareStatement(queryUpdateSteam)) {
+                            updateStmt.setString(1, newSteamId);
+                            updateStmt.setInt(2, userId);
+                            updateStmt.executeUpdate();
+                        }
+                    } else { //No Steam ID (add new record)
+                        String queryInsertSteam = "INSERT INTO user_steam (user_id, user_steamId) VALUES (?, ?)";
+                        try (PreparedStatement insertStmt = connectDB.prepareStatement(queryInsertSteam)) {
+                            insertStmt.setInt(1, userId);
+                            insertStmt.setString(2, newSteamId);
+                            insertStmt.executeUpdate();
+                        }
+                    }
+                    resetPageContent(); //Reset page content for text box to display the updated steam ID.
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Reset the text box content based on updated database changes.
+     */
+    private void resetPageContent() {
+        int userId = SessionInfo.getUserId();
+        Connection connectDB = DatabaseConnection.getInstance();
+        String queryFindSteam = "SELECT user_steamId FROM user_steam WHERE user_id = ?";
+        try (PreparedStatement stmt = connectDB.prepareStatement(queryFindSteam)) {
+            stmt.setInt(1, userId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) { // Check if there are any rows in the result set
+                    String userSteamId = rs.getString("user_steamId");
+                    steamTextField.setText(userSteamId); // Steam ID found
+                } else {
+                    steamTextField.setText("");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 

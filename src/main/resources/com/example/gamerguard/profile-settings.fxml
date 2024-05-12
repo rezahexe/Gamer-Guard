@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -40,8 +39,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="passwordPasswordField" layoutX="525.0" layoutY="357.0" />
-                  <TextField fx:id="emailTextField" layoutX="525.0" layoutY="284.0" />
+                  <TextField fx:id="steamTextField" layoutX="525.0" layoutY="284.0" />
                   <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="34.0" layoutY="448.0" prefHeight="20.0" prefWidth="200.0" textFill="RED">
                      <font>
                         <Font size="13.0" />
@@ -116,8 +114,9 @@
                      </font>
                   </Label>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="11.0" layoutX="23.0" layoutY="419.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="735.0" />
-                  <Button layoutX="687.0" layoutY="284.0" mnemonicParsing="false" text="Update" />
-                  <Button layoutX="687.0" layoutY="357.0" mnemonicParsing="false" text="Update" />
+                  <Button fx:id="steamUpdateButton" onAction="#steamUpdateButtonOnAction"  layoutX="687.0" layoutY="284.0" mnemonicParsing="false" text="Update" />
+                  <Button fx:id="spotifyUpdateButton" layoutX="687.0" layoutY="357.0" mnemonicParsing="false" text="Update" />
+                  <TextField fx:id="spotifyTextField" layoutX="525.0" layoutY="357.0" />
                </children>
             </AnchorPane>
          </content>
