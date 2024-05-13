@@ -2,6 +2,7 @@ package com.example.gamerguard.controller;
 
 import com.example.gamerguard.model.DatabaseConnection;
 import com.example.gamerguard.HelloApplication;
+import com.example.gamerguard.other.SessionInfo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

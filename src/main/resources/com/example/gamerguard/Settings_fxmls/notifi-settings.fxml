@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamerguard.controller.NotifiSettingsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamerguard.controller.Settings.NotifiSettingsController">
 
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="150.0" style="-fx-background-color: #2D294C;" BorderPane.alignment="CENTER" />
@@ -72,7 +72,7 @@
                         <Font size="32.0" />
                      </font>
                   </Label>
-                  <Label layoutX="130.0" layoutY="17.0" text="Notification">
+                  <Label layoutX="112.0" layoutY="17.0" text="Notification">
                      <font>
                         <Font size="40.0" />
                      </font>
@@ -97,7 +97,7 @@
                         <Font size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="460.0" layoutY="180.0" text="Notification Sound">
+                  <Label layoutX="460.0" layoutY="175.0" text="Notification Sound">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -107,13 +107,13 @@
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <RadioButton layoutX="318.0" layoutY="108.0" mnemonicParsing="false" />
-                  <RadioButton layoutX="318.0" layoutY="183.0" mnemonicParsing="false" />
-                  <RadioButton layoutX="698.0" layoutY="110.0" mnemonicParsing="false" />
-                  <RadioButton layoutX="700.0" layoutY="188.0" mnemonicParsing="false" />
-                  <ImageView fx:id="BackButton" fitHeight="49.0" fitWidth="75.0" layoutX="33.0" layoutY="22.0" onMouseClicked="#BackOnAction" pickOnBounds="true" preserveRatio="true">
+                  <CheckBox fx:id="hydrationCheckbox" layoutX="318.0" layoutY="108.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="breakReminderCheckbox" layoutX="318.0" layoutY="183.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="studyReminderCheckbox" layoutX="720.0" layoutY="108.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="notificationSoundCheckbox" layoutX="720.0" layoutY="183.0" mnemonicParsing="false" />
+                  <ImageView fx:id="BackButton" fitHeight="49.0" fitWidth="75.0" layoutX="13.0" layoutY="22.0" onMouseClicked="#BackOnAction" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Images/button_back.png" />
+                        <Image url="@../../../../../../../Images/button_back.png" />
                      </image>
                   </ImageView>
                </children>

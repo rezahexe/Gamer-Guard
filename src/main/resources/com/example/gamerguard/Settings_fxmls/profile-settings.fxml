@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -12,9 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.Region?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamerguard.controller.ProfileSettingsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamerguard.controller.Settings.ProfileSettingsController">
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="150.0" style="-fx-background-color: #2D294C;" BorderPane.alignment="CENTER" />
    </left>
@@ -28,7 +26,7 @@
                <children>
                   <ImageView fx:id="logoImageView" fitHeight="150.0" fitWidth="150.0" layoutX="38.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Images/defaultprofile.png" />
+                        <Image url="@../../../../../../../Images/defaultprofile.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="43.0" layoutY="226.0" prefHeight="30.0" prefWidth="196.0" text="Accounts Linked:">
@@ -41,8 +39,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="passwordPasswordField" layoutX="600.0" layoutY="357.0" />
-                  <TextField fx:id="emailTextField" layoutX="600.0" layoutY="283.0" />
+                  <TextField fx:id="steamTextField" layoutX="525.0" layoutY="284.0" />
                   <Label fx:id="loginMessageLabel" alignment="CENTER" layoutX="34.0" layoutY="448.0" prefHeight="20.0" prefWidth="200.0" textFill="RED">
                      <font>
                         <Font size="13.0" />
@@ -57,7 +54,7 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#541386" height="27.0" layoutX="95.0" layoutY="496.0" smooth="false" stroke="#521485" strokeDashOffset="25.0" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="25.0" strokeType="OUTSIDE" strokeWidth="10.0" width="591.0" />
                   <ImageView fx:id="logoImageView1" fitHeight="78.0" fitWidth="59.0" layoutX="43.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Images/icon_steam.png" />
+                        <Image url="@../../../../../../../Images/icon_steam.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="113.0" layoutY="355.0" prefHeight="20.0" prefWidth="282.0" text="Link your Spotify account">
@@ -67,12 +64,12 @@
                   </Label>
                   <ImageView fx:id="logoImageView2" fitHeight="78.0" fitWidth="59.0" layoutX="43.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Images/icon_spotify.png" />
+                        <Image url="@../../../../../../../Images/icon_spotify.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="button_back" fitHeight="49.0" fitWidth="75.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#backButtonOnAction" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Images/button_back.png" />
+                        <Image url="@../../../../../../../Images/button_back.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="36.0" layoutY="443.0" prefHeight="30.0" prefWidth="196.0" text="Accounts Settings:">
@@ -117,6 +114,9 @@
                      </font>
                   </Label>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="11.0" layoutX="23.0" layoutY="419.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="735.0" />
+                  <Button fx:id="steamUpdateButton" onAction="#steamUpdateButtonOnAction"  layoutX="687.0" layoutY="284.0" mnemonicParsing="false" text="Update" />
+                  <Button fx:id="spotifyUpdateButton" layoutX="687.0" layoutY="357.0" mnemonicParsing="false" text="Update" />
+                  <TextField fx:id="spotifyTextField" layoutX="525.0" layoutY="357.0" />
                </children>
             </AnchorPane>
          </content>

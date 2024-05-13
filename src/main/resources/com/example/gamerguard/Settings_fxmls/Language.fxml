@@ -33,7 +33,7 @@
             </SplitMenuButton>
             <ImageView fx:id="BackButton" fitHeight="49.0" fitWidth="75.0" layoutX="171.0" layoutY="108.0" onMouseClicked="#BackOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Images/button_back.png" />
+                  <Image url="@../../../../../../../Images/button_back.png" />
                </image>
             </ImageView>
       </children>

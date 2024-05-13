@@ -1,4 +1,4 @@
-package com.example.gamerguard.controller;
+package com.example.gamerguard.controller.Settings;
 
 import com.example.gamerguard.HelloApplication;
 import javafx.event.ActionEvent;
@@ -47,7 +47,7 @@ public class SettingsController implements Initializable {
     @FXML
     public void BackOnAction(MouseEvent event) throws IOException {
         Stage stage = (Stage) AppearanceThemeButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
@@ -56,7 +56,7 @@ public class SettingsController implements Initializable {
     private void AppearanceThemeButtonOnAction(ActionEvent event) throws IOException {
         // Load the FXML file
         Stage stage = (Stage) AppearanceThemeButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Appearance-theme.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/Appearance-theme.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
@@ -65,7 +65,7 @@ public class SettingsController implements Initializable {
     private void NotificationsOnAction(ActionEvent event) throws IOException {
          // Load the FXML file
          Stage stage = (Stage) NotificationsButton.getScene().getWindow();
-         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("notifi-settings.fxml"));
+         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/notifi-settings.fxml"));
          Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
          stage.setScene(scene);
     }
@@ -74,7 +74,7 @@ public class SettingsController implements Initializable {
     private void AccessibilityOnAction(ActionEvent event) throws IOException {
         // Load the FXML file
         Stage stage = (Stage) AccessibilityButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Accessibility.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/Accessibility.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
@@ -83,7 +83,7 @@ public class SettingsController implements Initializable {
     private void PrivacyandSecurityOnAction(ActionEvent event) throws IOException {
         // Load the FXML file
         Stage stage = (Stage) PrivacyandSecurityButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Privacy-and-security.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/Privacy-and-security.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
@@ -92,7 +92,7 @@ public class SettingsController implements Initializable {
     private void DisplayOnAction(ActionEvent event) throws IOException {
         // Load the FXML file
         Stage stage = (Stage) DisplayButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Display.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/Display.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
@@ -101,7 +101,7 @@ public class SettingsController implements Initializable {
     private void LanguageOnAction(ActionEvent event) throws IOException {
         // Load the FXML file
         Stage stage = (Stage) LanguageButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Language.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/Language.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
@@ -110,7 +110,7 @@ public class SettingsController implements Initializable {
     private void HelpandSupportOnAction(ActionEvent event) throws IOException {
         // Load the FXML file
         Stage stage = (Stage) HelpandSupportButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Help-and-support.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/Help-and-support.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
@@ -119,7 +119,7 @@ public class SettingsController implements Initializable {
     private void AboutOnAction(ActionEvent event) throws IOException {
         // Load the FXML file
         Stage stage = (Stage) AboutButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("About.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/About.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }

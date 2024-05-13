@@ -15,25 +15,27 @@
       <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2d294c" height="874.0" layoutX="-39.0" layoutY="-64.0" stroke="BLACK" strokeType="INSIDE" width="1339.0" />
             <Rectangle arcHeight="45.0" arcWidth="45.0" fill="#f0eada" height="496.0" layoutX="153.0" layoutY="92.0" stroke="BLACK" strokeType="INSIDE" width="717.0" />
-            <Label layoutX="414.0" layoutY="112.0" text="Appearance / theme">
+            <Label layoutX="407.0" layoutY="115.0" text="Privacy and security">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label layoutX="246.0" layoutY="177.0" text="Appearance">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <Label layoutX="246.0" layoutY="265.0" text="Theme">
+            <Label layoutX="246.0" layoutY="312.0" text="Security">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="246.0" layoutY="213.0" mnemonicParsing="false" text="Light mode" />
-            <Button layoutX="347.0" layoutY="213.0" mnemonicParsing="false" text="Dark mode" />
+            <Label layoutX="246.0" layoutY="174.0" text="Privacy">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="246.0" layoutY="260.0" mnemonicParsing="false" text="Read privacy policy" />
+            <Button layoutX="246.0" layoutY="206.0" mnemonicParsing="false" text="Read terms of service" />
+            <Button fx:id="ProfileSettingsButton" layoutX="245.0" layoutY="360.0" mnemonicParsing="false" text="Open profile settings"  onAction="#ProfileSettingsOnAction" />
             <ImageView fx:id="BackButton" fitHeight="49.0" fitWidth="75.0" layoutX="177.0" layoutY="112.0" onMouseClicked="#BackOnAction" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <Image url="@../../../../../../Images/button_back.png" />
+                    <Image url="@../../../../../../../Images/button_back.png" />
                 </image>
             </ImageView>
       </children>

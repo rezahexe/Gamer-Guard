@@ -34,7 +34,7 @@ public class BackButtonController implements Initializable {
     @FXML
     public void BackOnAction(MouseEvent event) throws IOException {
         Stage stage = (Stage) BackButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/Settings.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
@@ -44,7 +44,7 @@ public class BackButtonController implements Initializable {
     private void ProfileSettingsOnAction(ActionEvent event) throws IOException {
         // Load the FXML file
         Stage stage = (Stage) ProfileSettingsButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("profile-settings.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/profile-settings.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
