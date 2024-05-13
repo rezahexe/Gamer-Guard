@@ -2,12 +2,14 @@ package com.example.gamerguard.controller;
 
 import com.example.gamerguard.HelloApplication;
 import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -20,18 +22,68 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 public class NotifiSettingsController implements Initializable {
 
-    //Back button code
     @FXML
     private ImageView BackButton;
+    @FXML
+    private CheckBox hydrationCheckbox;
+    @FXML
+    private CheckBox breakReminderCheckbox;
+    @FXML
+    private CheckBox studyReminderCheckbox;
+    @FXML
+    private CheckBox notificationSoundCheckbox;
+
+
+    private PauseTransition hydrationTimer = new PauseTransition(Duration.seconds(5));
+    private PauseTransition breakTimer = new PauseTransition(Duration.seconds(5));
+    private PauseTransition studyTimer = new PauseTransition(Duration.seconds(5));
+    private PauseTransition soundTimer = new PauseTransition(Duration.seconds(5));
+
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
-        File logoFile0 = new File("Images/button_back.png");
-        Image logoImage0 = new Image(logoFile0.toURI().toString());
-        BackButton.setImage(logoImage0);
+        // Set up the back button image
+        File logoFile = new File("Images/button_back.png");
+        Image logoImage = new Image(logoFile.toURI().toString());
+        BackButton.setImage(logoImage);
+
+        // Set up hydration reminder
+        setupReminder(hydrationCheckbox, hydrationTimer,  "Hydration Reminder","Need to take a break!");
+        setupReminder(breakReminderCheckbox, breakTimer,  "Break Reminder","Time for a short break!");
+        setupReminder(studyReminderCheckbox, studyTimer,  "Study Reminder","Time to focus on studies!");
+        setupReminder(notificationSoundCheckbox, soundTimer, "Sound Notification","Sound notification activated!");
     }
 
+    private void setupReminder(CheckBox checkBox, PauseTransition timer, String title, String message) {
+        timer.setOnFinished(event -> {
+            if (checkBox.isSelected()) {
+                // Correctly capture checkBox and message in the lambda
+                Platform.runLater(() -> showReminderPopup(checkBox, timer, title, message));
+            }
+        });
+
+        checkBox.selectedProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal) {
+                timer.playFromStart();
+            } else {
+                timer.stop();
+            }
+        });
+    }
+
+    private void showReminderPopup(CheckBox checkBox, PauseTransition timer, String title,String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait(); // Blocks until the alert is dismissed
+
+        // Restart the timer here after the alert is closed, if the checkbox is still checked
+        if (checkBox.isSelected()) {
+            timer.playFromStart();
+        }
+    }
     @FXML
     public void BackOnAction(MouseEvent event) throws IOException {
         Stage stage = (Stage) BackButton.getScene().getWindow();
@@ -39,56 +91,4 @@ public class NotifiSettingsController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
-
-    @FXML
-    private Button button1;
-
-    private PauseTransition timer = new PauseTransition(Duration.seconds(10));
-    private Stage popupStage; // You'll need to create this stage for your pop-up
-
-    @FXML
-    private void initialize() {
-        setupPopupTimer();
-    }
-
-    private void setupPopupTimer() {
-        timer.setOnFinished(e -> showPopup());
-        timer.play();
-    }
-
-    private void showPopup() {
-        // This is where you would create/show your pop-up if it's not already showing
-        if (popupStage == null) {
-            try {
-                // Load the pop-up FXML file
-                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("popup.fxml"));
-                Parent popupRoot = fxmlLoader.load();
-
-                // Create and initialize the pop-up Stage
-                popupStage = new Stage();
-                popupStage.setScene(new Scene(popupRoot));
-                popupStage.initModality(Modality.APPLICATION_MODAL); // Optional: makes the popup block input to other windows
-
-                // When the pop-up is closed, reset the timer
-                popupStage.setOnHiding(event -> timer.playFromStart());
-            } catch (IOException e) {
-                e.printStackTrace(); // Handle the exception as you see fit
-                return; // Exit the method if loading failed
-            }
-        }
-
-        if (!popupStage.isShowing()) {
-            popupStage.show();
-        }
-    }
-
-
-    // Logic for what should happen when button1 is clicked
-    @FXML
-    private void handleButton1Click(MouseEvent event) {
-        // If you want to trigger the pop-up manually with a button
-        showPopup();
-    }
-
-    // Other event handling methods and logic for the controller...
 }
