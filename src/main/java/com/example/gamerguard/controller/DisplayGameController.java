@@ -90,6 +90,9 @@ public class DisplayGameController implements Initializable {
                     String queryGame = "SELECT * FROM user_gametime WHERE user_id = ? AND game_name = ?";
                     for (int i = 0; i < gamesList.size(); i++) {
                         SteamInfo.Game game = gamesList.get(i);
+                        if (game.getPlaytime() == 0) {
+                            continue;
+                        }
                         int hour = 0;
                         String status = "X"; //Default status if there are no hours played
                         try (PreparedStatement stmt2 = connectDB.prepareStatement(queryGame)) { //Check if game and user ID already exists
