@@ -4,58 +4,21 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-pref-height: 720; -fx-pref-width: 1080;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamerguard.controller.DashboardController">
-   <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #F0EADA;" BorderPane.alignment="CENTER">
-         <children>
-            <Pane prefHeight="247.0" prefWidth="1080.0" style="-fx-background-color: #D80567;">
-               <children>
-                  <Pane prefHeight="34.0" prefWidth="1080.0" style="-fx-background-color: #541386;">
-                     <children>
-                        <Text fill="WHITE" layoutX="23.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress Tracking" />
-                     </children>
-                  </Pane>
-                  <LineChart layoutY="39.0" legendSide="TOP" prefHeight="215.0" prefWidth="434.0" title="Device Usage This Week">
-                     <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                     </xAxis>
-                     <yAxis>
-                        <NumberAxis side="LEFT" />
-                     </yAxis>
-                  </LineChart>
-               </children>
-            </Pane>
-            <Pane layoutX="375.0" layoutY="270.0" prefHeight="350.0" prefWidth="705.0" style="-fx-background-color: #FFD40C;">
-               <children>
-                  <Button fx:id="gamesButton" layoutY="-1.0" mnemonicParsing="false" onAction="#gamesButtonOnAction" prefHeight="87.0" prefWidth="705.0" style="-fx-background-color: #541386;" text="Games" textFill="WHITE" />
-                  <Button fx:id="activityButton" layoutY="86.0" mnemonicParsing="false" onAction="#activityButtonOnAction" prefHeight="87.0" prefWidth="705.0" style="-fx-background-color: #FFD40C;" text="Activity" />
-                  <Button fx:id="playlistButton" layoutY="174.0" mnemonicParsing="false" onAction="#playlistButtonOnAction" prefHeight="87.0" prefWidth="705.0" style="-fx-background-color: #541386;" text="Playlist" textFill="WHITE" />
-                  <Button fx:id="friendsButton" layoutY="261.0" mnemonicParsing="false" onAction="#friendsButtonOnAction" prefHeight="89.0" prefWidth="705.0" style="-fx-background-color: #FFD40C;" text="Friends" />
-               </children>
-            </Pane>
-            <Pane layoutY="270.0" prefHeight="350.0" prefWidth="350.0" style="-fx-background-color: #D80567;">
-               <children>
-                  <Pane prefHeight="60.0" prefWidth="350.0" style="-fx-background-color: #541386;">
-                     <children>
-                        <Text fill="WHITE" layoutX="121.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today's reminders" />
-                     </children>
-                  </Pane>
-               </children>
-            </Pane>
-         </children>
-      </Pane>
-   </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.gamerguard.controller.DashboardController">
+
+   <!-- Top Section -->
    <top>
-      <Pane prefHeight="100.0" prefWidth="1080.0" style="-fx-background-color: #2D294C;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="100.0" prefWidth="1080.0" style="-fx-background-color: #2D294C;">
          <children>
-            <Button fx:id="settingsButton" layoutX="514.0" layoutY="38.0" mnemonicParsing="false" onAction="#settingsButtonOnAction" text="Settings" />
-            <Button fx:id="profileButton" layoutX="594.0" layoutY="38.0" mnemonicParsing="false" onAction="#profileButtonOnAction" text="Profile" />
-            <Button fx:id="infoButton" layoutX="441.0" layoutY="38.0" mnemonicParsing="false" onAction="#infoButtonOnAction" text="?" />
+            <Button fx:id="settingsButton" layoutX="514.0" layoutY="38.0" mnemonicParsing="false" text="Settings" />
+            <Button fx:id="profileButton" layoutX="594.0" layoutY="38.0" mnemonicParsing="false" text="Profile" />
+            <Button fx:id="infoButton" layoutX="441.0" layoutY="38.0" mnemonicParsing="false" text="?" />
             <Text fill="WHITE" layoutX="694.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username_123">
                <font>
                   <Font name="System Bold" size="20.0" />
@@ -74,4 +37,76 @@
          </children>
       </Pane>
    </top>
+
+   <!-- Center Section -->
+   <center>
+      <Pane prefHeight="643.0" prefWidth="1080.0" style="-fx-background-color: #F0EADA;">
+         <children>
+            <!-- Pane containing the LineChart -->
+            <Pane prefHeight="280.0" prefWidth="1080.0" style="-fx-background-color: #D80567;">
+               <!-- Title bar for the LineChart -->
+               <Pane prefHeight="34.0" prefWidth="1080.0" style="-fx-background-color: #541386;">
+                  <children>
+                     <Text fill="WHITE" layoutX="23.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Progress Tracking" />
+                  </children>
+               </Pane>
+
+               <!-- LineChart with fx:id for controller access -->
+               <LineChart fx:id="playTimeChart" layoutX="33.0" layoutY="41.0" legendSide="TOP" prefHeight="215.0" prefWidth="434.0" title="Play Time Per Day">
+                  <xAxis>
+                     <CategoryAxis side="BOTTOM" />
+                  </xAxis>
+                  <yAxis>
+                     <NumberAxis side="LEFT" />
+                  </yAxis>
+               </LineChart>
+
+               <!-- Additional Text and TextAreas -->
+               <Text layoutX="649.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Productivity usage goal:">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font>
+               </Text>
+               <Text layoutX="655.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game apps usage goal:">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font>
+               </Text>
+               <Text layoutX="652.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Distraction usage goal:">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font>
+               </Text>
+               <TextArea fx:id="productivityTextArea" layoutX="813.0" layoutY="74.0" prefHeight="25.0" prefWidth="200.0" text="15 hrs/week" />
+               <TextArea fx:id="gameAppsTextArea" layoutX="813.0" layoutY="121.0" prefHeight="25.0" prefWidth="200.0" text="10 hrs/week" />
+               <TextArea fx:id="distractionTextArea" layoutX="813.0" layoutY="172.0" prefHeight="25.0" prefWidth="200.0" text="5 hrs/week" />
+               <Button fx:id="resetButton" layoutX="941.0" layoutY="231.0" mnemonicParsing="false" onAction="#onResetGoalButtonClick" style="-fx-background-color: #D80567;" text="Reset goal">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font></Button>
+               <Button layoutX="78.0" layoutY="247.0" mnemonicParsing="false" style="-fx-background-color: #D80567;" text="View history" />
+            </Pane>
+
+            <!-- Pane containing buttons -->
+            <Pane layoutX="367.0" layoutY="296.0" prefHeight="324.0" prefWidth="713.0" style="-fx-background-color: #FFD40C;">
+               <Button fx:id="playlistButton" layoutY="162.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="713.0" style="-fx-background-color: #541386;" text="Playlist" textFill="WHITE" />
+               <Button fx:id="activityButton" layoutY="81.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="713.0" style="-fx-background-color: #FFD40C;" text="Activity" />
+               <!-- Buttons for different actions -->
+               <Button fx:id="gamesButton" mnemonicParsing="false" prefHeight="81.0" prefWidth="713.0" style="-fx-background-color: #541386;" text="Games" textFill="WHITE" />
+               <Button fx:id="friendsButton" layoutY="243.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="713.0" style="-fx-background-color: #FFD40C;" text="Friends" />
+            </Pane>
+
+            <!-- Pane for reminders -->
+            <Pane layoutY="330.0" prefHeight="290.0" prefWidth="350.0" style="-fx-background-color: #D80567;">
+               <children>
+                  <Pane layoutY="-34.0" prefHeight="54.0" prefWidth="350.0" style="-fx-background-color: #541386;">
+                     <children>
+                        <Text fill="WHITE" layoutX="121.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today's reminders" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </center>
 </BorderPane>

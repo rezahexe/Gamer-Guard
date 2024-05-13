@@ -1,102 +1,77 @@
 package com.example.gamerguard.controller;
 
-import com.example.gamerguard.HelloApplication;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
-import javafx.util.Duration;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.TextArea;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class DashboardController implements Initializable {
-    public Button profileButton;
-    public Button infoButton;
-    public Button gamesButton;
-    public Button activityButton;
-    public Button playlistButton;
-    public Button friendsButton;
-    @FXML
-    private Button settingsButton;
-    @FXML
-    private Label timerLabel;
-
-    private int secondsElapsed;
-    private Timeline timeline;
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // Initialization code, if needed
-    }
+public class DashboardController {
 
     @FXML
-    private void startTimer(ActionEvent event) {
-        if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) {
-            return; // Timer already running
-        }
-
-        // Create new Timeline for the timer
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
-            secondsElapsed++;
-            timerLabel.setText("Timer: " + secondsElapsed + " seconds");
-        }));
-
-        // Set cycle count to indefinite
-        timeline.setCycleCount(Animation.INDEFINITE);
-
-        // Start the timer
-        timeline.play();
-    }
+    private LineChart<String, Number> playTimeChart;
 
     @FXML
-    private void stopTimer(ActionEvent event) {
-        if (timeline != null) {
-            timeline.stop();
-        }
+    private TextArea productivityTextArea;
+
+    @FXML
+    private TextArea gameAppsTextArea;
+
+    @FXML
+    private TextArea distractionTextArea;
+
+    private XYChart.Series<String, Number> averageSeries;
+
+    //Line Chart
+    public void initialize() {
+        // Initialize the chart with data
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("This Week");
+
+        // Add sample data (replace this with your actual data)
+        series.getData().add(new XYChart.Data<>("Mon", 3.5));
+        series.getData().add(new XYChart.Data<>("Tue", 2.5));
+        series.getData().add(new XYChart.Data<>("Wed", 3));
+        series.getData().add(new XYChart.Data<>("Thu", 4));
+        series.getData().add(new XYChart.Data<>("Fri", 6.6));
+        series.getData().add(new XYChart.Data<>("Sat", 6));
+        series.getData().add(new XYChart.Data<>("Sun", 4));
+
+        // Create a new series for average playtime per day
+        averageSeries = new XYChart.Series<>();
+        averageSeries.setName("Goal Time");
+
+        // Add sample average data (replace this with your actual data)
+        averageSeries.getData().add(new XYChart.Data<>("Mon", 2));
+        averageSeries.getData().add(new XYChart.Data<>("Tue", 2));
+        averageSeries.getData().add(new XYChart.Data<>("Wed", 3));
+        averageSeries.getData().add(new XYChart.Data<>("Thu", 1));
+        averageSeries.getData().add(new XYChart.Data<>("Fri", 4));
+        averageSeries.getData().add(new XYChart.Data<>("Sat", 5));
+        averageSeries.getData().add(new XYChart.Data<>("Sun", 3));
+
+        // Set the data to the chart
+        playTimeChart.getData().addAll(series, averageSeries);
     }
 
     @FXML
-    private void resetTimer(ActionEvent event) {
-        stopTimer(event); // Stop the timer
-        secondsElapsed = 0;
-        timerLabel.setText("Timer: 0 seconds");
+    protected void onHelloButtonClick() {
+        // Update chart data when button is clicked (for demonstration)
+        XYChart.Series<String, Number> series = playTimeChart.getData().get(0);
+        XYChart.Series<String, Number> averageSeries = playTimeChart.getData().get(1);
+
+        // Update sample data (replace this with your actual data or logic)
+        series.getData().forEach(data -> data.setYValue(data.getYValue().intValue() + 1));
+        averageSeries.getData().forEach(data -> data.setYValue(data.getYValue().intValue() + 1));
     }
 
-    public void gamesButtonOnAction(ActionEvent event) {
-    }
+    @FXML
+    protected void onResetGoalButtonClick() {
+        // Reset text areas to "0 hrs/week"
+        productivityTextArea.setText("0 hrs/week");
+        gameAppsTextArea.setText("0 hrs/week");
+        distractionTextArea.setText("0 hrs/week");
 
-    public void activityButtonOnAction(ActionEvent event) {
-    }
-
-    public void playlistButtonOnAction(ActionEvent event) {
-    }
-
-    public void friendsButtonOnAction(ActionEvent event) {
-    }
-
-    public void settingsButtonOnAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        Stage stage = (Stage) settingsButton.getScene().getWindow();
-        stage.setScene(scene);
-    }
-
-    public void profileButtonOnAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("profile-settings.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        Stage stage = (Stage) profileButton.getScene().getWindow();
-        stage.setScene(scene);
-    }
-
-    public void infoButtonOnAction(ActionEvent event) {
+        // Reset average series data to zero
+        averageSeries.getData().forEach(data -> data.setYValue(0));
     }
 }
