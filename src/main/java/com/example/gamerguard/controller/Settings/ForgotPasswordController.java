@@ -2,6 +2,7 @@ package com.example.gamerguard.controller.Settings;
 
 import com.example.gamerguard.HelloApplication;
 import com.example.gamerguard.model.DatabaseConnection;
+import com.example.gamerguard.other.HashInput;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,9 +36,6 @@ public class ForgotPasswordController {
     private Label resetPasswordMessageLabel;
 
 
-
-
-
     public void cancelButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
@@ -68,13 +66,14 @@ public class ForgotPasswordController {
                 resetPasswordMessageLabel.setText("Passwords do not match");
                 return;
             }
-
-            statement.executeUpdate("UPDATE user_account SET password = '" + newPassword + "' WHERE emailaddress = '" + emailaddress + "'");
+            String hashedPassword = HashInput.hashInput(newPassword);
+            statement.executeUpdate("UPDATE user_account SET password = '" + hashedPassword + "' WHERE emailaddress = '" + emailaddress + "'");
             resetPasswordMessageLabel.setText("Password reset successfully! Close page");
 
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
+            System.out.println("Error occurred during password reset: " + e.getMessage());
         }
 
     }

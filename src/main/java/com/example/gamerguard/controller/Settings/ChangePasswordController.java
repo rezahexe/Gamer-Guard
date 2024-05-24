@@ -1,6 +1,7 @@
 package com.example.gamerguard.controller.Settings;
 
 import com.example.gamerguard.model.DatabaseConnection;
+import com.example.gamerguard.other.HashInput;
 import com.example.gamerguard.other.SessionInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,7 +59,8 @@ public class ChangePasswordController {
                 resetPasswordMessageLabel.setText("Passwords do not match");
                 return;
             }
-            statement.executeUpdate("UPDATE user_account SET password = '" + newPassword + "' WHERE account_id = '" + userId + "'");
+            String hashedPassword = HashInput.hashInput(newPassword);
+            statement.executeUpdate("UPDATE user_account SET password = '" + hashedPassword + "' WHERE account_id = '" + userId + "'");
             Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             currentStage.close();
         } catch (Exception e) {

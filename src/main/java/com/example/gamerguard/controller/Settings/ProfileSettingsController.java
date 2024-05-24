@@ -183,7 +183,7 @@ public class ProfileSettingsController implements Initializable {
             OTPController controller = fxmlLoader.getController();
             otpStage.showAndWait();
             if (controller.isOtpVerified()) {
-                FXMLLoader passwordLoader = new FXMLLoader(HelloApplication.class.getResource("change-password.fxml"));
+                FXMLLoader passwordLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/change-password.fxml"));
                 Stage passwordStage = new Stage();
                 Scene passwordScene = new Scene(passwordLoader.load(), 600, 400);
                 passwordStage.setScene(passwordScene);

@@ -50,10 +50,6 @@ public class LoginController implements Initializable {
      * @param resourceBundle The resource bundle that contains localized objects for the controller, or null if there is no resource bundle.
      */
     public  void initialize (URL url, ResourceBundle resourceBundle) {
-        String userInput = "1";
-        String hashed = HashInput.hashInput(userInput);
-        System.out.println("Hashed input: " + hashed);
-
         File logoFile = new File("Images/GAMER_GUARD_LOGO.png");
         Image logoImage = new Image(logoFile.toURI().toString());
         logoImageView.setImage(logoImage);
@@ -92,38 +88,26 @@ public class LoginController implements Initializable {
             Stage otpStage = new Stage();
             Scene scene = new Scene(fxmlLoader.load(), 600, 400);
             otpStage.setScene(scene);
-            OTPController controller = fxmlLoader.getController();
+            OTPNoSessionController controller = fxmlLoader.getController();
             otpStage.showAndWait();
-            if (controller.isOtpVerified()) {
-                FXMLLoader passwordLoader = new FXMLLoader(HelloApplication.class.getResource("forgotpassword.fxml"));
-                Stage passwordStage = new Stage();
-                Scene passwordScene = new Scene(passwordLoader.load(), 600, 400);
-                passwordStage.setScene(passwordScene);
-                passwordStage.show();
-            }
+//            if (controller.isOtpVerified()) {
+//                FXMLLoader passwordLoader = new FXMLLoader(HelloApplication.class.getResource("forgotpassword.fxml"));
+//                Stage passwordStage = new Stage();
+//                Scene passwordScene = new Scene(passwordLoader.load(), 600, 400);
+//                passwordStage.setScene(passwordScene);
+//                passwordStage.show();
+//            }
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-
-//    public void forgotPasswordHyperlinkOnAction(ActionEvent event) throws IOException {
-////        Stage stage = (Stage) forgotPasswordHyperlink.getScene().getWindow();
-//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("forgotpassword.fxml"));
-//        Stage forgotPasswordStage = new Stage();
-//        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-//        forgotPasswordStage.setScene(scene);
-//        forgotPasswordStage.show();
-//    }
-
 
 
     public void validateLogin() {
         Connection connectDB = DatabaseConnection.getInstance();
         String password = passwordPasswordField.getText();
         String hashedPassword = HashInput.hashInput(password);
-        System.out.println("Hashed input: " + hashedPassword);
 
-        // Include the password column in the query for debugging
         String verifyLogin = "SELECT count(1), account_id, firstname, emailaddress, password FROM user_account WHERE emailaddress = ?";
 
         try (PreparedStatement preparedStatement = connectDB.prepareStatement(verifyLogin)) {
@@ -132,9 +116,7 @@ public class LoginController implements Initializable {
             ResultSet queryResult = preparedStatement.executeQuery();
 
             if (queryResult.next()) {
-                // Print the stored hashed password for debugging
                 String storedHashedPassword = queryResult.getString("password");
-                System.out.println("Stored hashed password: " + storedHashedPassword);
 
                 if (queryResult.getInt(1) == 1 && storedHashedPassword.equals(hashedPassword)) {
                     int userId = queryResult.getInt("account_id");

@@ -18,9 +18,7 @@ import javafx.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 
@@ -64,7 +62,7 @@ public class SignUpController implements Initializable {
 
 
 
-    public void registerUser() {
+    public boolean registerUser() {
         Connection connectDB = DatabaseConnection.getInstance();
 
         String firstname = firstnameTextField.getText();
@@ -72,6 +70,19 @@ public class SignUpController implements Initializable {
         String emailaddress = emailTextField.getText();
         String password = setPasswordField.getText();
         String hashedpassword = HashInput.hashInput(password);
+
+        String checkEmailQuery = "SELECT COUNT(*) FROM user_account WHERE emailaddress = ?";
+        try (PreparedStatement checkEmailStatement = connectDB.prepareStatement(checkEmailQuery)) {
+            checkEmailStatement.setString(1, emailaddress);
+            ResultSet resultSet = checkEmailStatement.executeQuery();
+            if (resultSet.next() && resultSet.getInt(1) > 0) {
+                registerMessageLabel.setText("Email address is already registered, try resetting password.");
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
 
         String insertFields = "INSERT INTO user_account(firstname, lastname, emailaddress, password) VALUES ('";
         String insertValues = firstname + "','"+ lastname + "','" + emailaddress + "','" + hashedpassword + "')";
@@ -91,10 +102,11 @@ public class SignUpController implements Initializable {
             }
             SessionInfo.setUserName(firstname);
             SessionInfo.setUserEmail(emailaddress);
-
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
+            return false;
         }
     }
 
@@ -121,14 +133,14 @@ public class SignUpController implements Initializable {
 
         if (!firstname.isEmpty() && !lastname.isEmpty() && !emailaddress.isEmpty() && !password.isEmpty()) {
             if (password.equals(confirmPassword)) {
-            registerUser();
-            try {
-                openDashboard();
-            } catch (IOException e) {
-                e.printStackTrace();
-                e.getCause();
-            }
-
+                if (registerUser()) {
+                    try {
+                        openDashboard();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        e.getCause();
+                    }
+                }
         } else {
                 registerMessageLabel.setText("Password does not match!");
             }
