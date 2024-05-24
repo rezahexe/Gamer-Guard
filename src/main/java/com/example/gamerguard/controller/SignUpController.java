@@ -141,7 +141,7 @@ public class SignUpController implements Initializable {
                         e.getCause();
                     }
                 }
-        } else {
+            } else {
                 registerMessageLabel.setText("Password does not match!");
             }
         } else {
@@ -171,5 +171,4 @@ public class SignUpController implements Initializable {
     }
 
 }
-
 

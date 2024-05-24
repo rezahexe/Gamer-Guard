@@ -50,10 +50,11 @@ public class ProfileSettingsController implements Initializable {
      * Initializes the controller.
      * Loads the logo images from the specified file path and sets it
      * as the image source. Set event handlers for mouse click events on buttons.
+     *
      * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
      * @param resourceBundle The resource bundle that contains localized objects for the controller, or null if there is no resource bundle.
      */
-    public  void initialize (URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         File logoFile = new File("Images/defaultprofile.png");
         Image logoImage = new Image(logoFile.toURI().toString());
         logoImageView.setImage(logoImage);
@@ -113,10 +114,11 @@ public class ProfileSettingsController implements Initializable {
 
     /**
      * Updates or insert new record of user's Steam ID when click update Steam button.
+     *
      * @param event ActionEvent triggered by clicking the login button.
      */
     public void steamUpdateButtonOnAction(ActionEvent event) {
-        if (!steamTextField.getText().isBlank())  {
+        if (!steamTextField.getText().isBlank()) {
             int userId = SessionInfo.getUserId();
             String newSteamId = steamTextField.getText();
             Connection connectDB = DatabaseConnection.getInstance();
@@ -172,6 +174,7 @@ public class ProfileSettingsController implements Initializable {
 
     /**
      * Opens opt page, when OTP verifies and returns true, opens change-password page.
+     *
      * @param mouseEvent Mouse click
      */
     private void changepasswordButtonOnAction(MouseEvent mouseEvent) {
@@ -197,6 +200,7 @@ public class ProfileSettingsController implements Initializable {
 
     /**
      * Opens opt page, when OTP verifies and returns true, delete user account and closes program.
+     *
      * @param mouseEvent Mouse click
      */
     private void deleteButtonOnAction(MouseEvent mouseEvent) {
@@ -210,14 +214,65 @@ public class ProfileSettingsController implements Initializable {
             if (controller.isOtpVerified()) {
                 Connection connectDB = DatabaseConnection.getInstance();
                 int userId = SessionInfo.getUserId();
-                System.out.println(userId);
-                String deleteAccount = "DELETE FROM user_account WHERE account_Id = '" + userId + "'";
-                try {
-                    Statement statement = connectDB.createStatement();
-                    int rowsAffected = statement.executeUpdate(deleteAccount);
+
+                String checkSteam = "SELECT COUNT(*) FROM user_steam WHERE user_id  = ?";
+                try (PreparedStatement checkSteamStmt = connectDB.prepareStatement(checkSteam)) {
+                    checkSteamStmt.setInt(1, userId);
+                    ResultSet steamResultSet = checkSteamStmt.executeQuery();
+                    if (steamResultSet.next() && steamResultSet.getInt(1) > 0) {
+                        String deleteSteam = "DELETE FROM user_steam WHERE user_id = ?";
+                        try (PreparedStatement deleteSteamStmt = connectDB.prepareStatement(deleteSteam)) {
+                            deleteSteamStmt.setInt(1, userId);
+                            int rowsDeleted = deleteSteamStmt.executeUpdate();
+                        } catch (SQLException ex) {
+                            System.err.println("Failed to delete from user_steam: " + ex.getMessage());
+                        }
+                    }
+                } catch (SQLException ex) {
+                    System.err.println("Failed to check user_steam: " + ex.getMessage());
+                }
+
+                String checkPlaytime = "SELECT COUNT(*) FROM user_gametime WHERE user_id = ?";
+                try (PreparedStatement checkPlaytimeStmt = connectDB.prepareStatement(checkPlaytime)) {
+                    checkPlaytimeStmt.setInt(1, userId);
+                    ResultSet playtimeResultSet = checkPlaytimeStmt.executeQuery();
+                    if (playtimeResultSet.next() && playtimeResultSet.getInt(1) > 0) {
+                        String deletePlaytime = "DELETE FROM user_gametime WHERE user_id = ?";
+                        try (PreparedStatement deletePlaytimeStmt = connectDB.prepareStatement(deletePlaytime)) {
+                            deletePlaytimeStmt.setInt(1, userId);
+                            int rowsDeleted = deletePlaytimeStmt.executeUpdate();
+                        } catch (SQLException ex) {
+                            System.err.println("Failed to delete from user_gametime: " + ex.getMessage());
+                        }
+                    }
+                } catch (SQLException ex) {
+                    System.err.println("Failed to check user_gametime: " + ex.getMessage());
+                }
+
+                String checkList = "SELECT COUNT(*) FROM todolist WHERE id_account = ?";
+                try (PreparedStatement checkListStmt = connectDB.prepareStatement(checkList)) {
+                    checkListStmt.setInt(1, userId);
+                    ResultSet listResultSet = checkListStmt.executeQuery();
+                    if (listResultSet.next() && listResultSet.getInt(1) > 0) {
+                        String deleteList = "DELETE FROM user_gametime WHERE id_account = ?";
+                        try (PreparedStatement deleteListStmt = connectDB.prepareStatement(deleteList)) {
+                            deleteListStmt.setInt(1, userId);
+                            int rowsDeleted = deleteListStmt.executeUpdate();
+                        } catch (SQLException ex) {
+                            System.err.println("Failed to delete from todolist: " + ex.getMessage());
+                        }
+                    }
+                } catch (SQLException ex) {
+                    System.err.println("Failed to check todolist: " + ex.getMessage());
+                }
+
+                String deleteAccount = "DELETE FROM user_account WHERE account_Id = ?";
+                try (PreparedStatement deleteAccountStmt = connectDB.prepareStatement(deleteAccount)) {
+                    deleteAccountStmt.setInt(1, userId);
+                    int rowsDeleted = deleteAccountStmt.executeUpdate();
                     Platform.exit();
                 } catch (SQLException ex) {
-                    System.err.println(ex);
+                    System.err.println("Failed to delete from user_account: " + ex.getMessage());
                 }
             }
         } catch (IOException ex) {
