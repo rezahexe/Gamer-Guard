@@ -19,6 +19,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+/**
+ * Controller class for handling OTP verification without an active session.
+ */
 public class OTPNoSessionController {
 
     @FXML

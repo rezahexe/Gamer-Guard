@@ -24,6 +24,10 @@ import java.sql.*;
 import java.util.ResourceBundle;
 import java.net.URL;
 
+
+/**
+ * Controller for handling profile settings.
+ */
 public class ProfileSettingsController implements Initializable {
     @FXML
     private Button steamUpdateButton;

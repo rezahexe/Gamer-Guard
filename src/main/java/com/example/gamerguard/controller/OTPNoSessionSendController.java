@@ -17,6 +17,10 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.util.Properties;
 
+
+/**
+ * Controller class for sending OTP without a session.
+ */
 public class OTPNoSessionSendController {
     public Label otpField;
     public Button verifyButton;
@@ -31,12 +35,18 @@ public class OTPNoSessionSendController {
 
     private String emailAddress;
 
-    // Method to set the email address
+    /**
+     * Method to set the email address.
+     * @param emailAddress Email address to be set.
+     */
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
-    // Method to retrieve the email address
+    /**
+     * Method to retrieve the email address.
+     * @return The set email address.
+     */
     public String getEmailAddress() {
         return emailAddress;
     }

@@ -15,6 +15,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+
+/**
+ * Controller class for handling password change functionality.
+ */
 public class ChangePasswordController {
     public Button comfirmPasswordButton;
     @FXML

@@ -15,6 +15,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+
+/**
+ * Controller class for handling password change without an active session.
+ */
 public class ChangePasswordNoSessionController {
     public Button comfirmPasswordButton;
     @FXML
@@ -27,11 +31,19 @@ public class ChangePasswordNoSessionController {
     private Label resetPasswordMessageLabel;
     private String emailAddress;
 
+
+    /**
+     * Sets the email address associated with the account.
+     * @param emailAddress The email address to be set
+     */
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
 
-    // Method to retrieve the email address
+    /**
+     * Retrieves the email address associated with the account.
+     * @return The email address associated with the account
+     */
     public String getEmailAddress() {
         return emailAddress;
     }

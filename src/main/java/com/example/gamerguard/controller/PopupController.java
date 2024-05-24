@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+
+/**
+ * Controller class for the popup window.
+ */
 public class PopupController {
 
     @FXML
@@ -12,7 +16,10 @@ public class PopupController {
     @FXML
     private Button settingsButton;
 
-    // This method gets called when the 'Close' button is pressed
+    /**
+     * Method called when the 'Close' button is pressed.
+     * Closes the current stage.
+     */
     @FXML
     private void handleClose() {
         // Get the current stage from the close button and close it
@@ -20,14 +27,20 @@ public class PopupController {
         stage.close();
     }
 
-    // This method gets called when the 'Settings' button is pressed
+    /**
+     * Method called when the 'Settings' button is pressed.
+     * Implement your settings handling logic here.
+     */
     @FXML
     private void handleSettings() {
         // Implement your settings handling logic here
         System.out.println("Settings button clicked");
     }
 
-    // Initialization method if needed
+    /**
+     * Initialization method called after the FXML file is loaded.
+     * You can perform any initialization logic here if necessary.
+     */
     @FXML
     public void initialize() {
         // Initialization logic here, if necessary

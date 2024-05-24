@@ -21,7 +21,10 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
-
+/**
+ * Controller class for the SignUp.fxml file.
+ * Handles user registration functionality.
+ */
 public class SignUpController implements Initializable {
 
     @FXML

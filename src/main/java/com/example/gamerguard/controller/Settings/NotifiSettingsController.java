@@ -22,6 +22,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+/**
+ * Controller class for notification settings.
+ */
 public class NotifiSettingsController implements Initializable {
 
     @FXML
@@ -41,6 +45,12 @@ public class NotifiSettingsController implements Initializable {
     private PauseTransition studyTimer = new PauseTransition(Duration.seconds(5));
     private PauseTransition soundTimer = new PauseTransition(Duration.seconds(5));
 
+
+    /**
+     * Initializes the controller after its root element has been completely processed.
+     * @param location The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resources The resources used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Set up the back button image
@@ -55,6 +65,14 @@ public class NotifiSettingsController implements Initializable {
         setupReminder(notificationSoundCheckbox, soundTimer, "Sound Notification","Sound notification activated!");
     }
 
+
+    /**
+     * Sets up a reminder checkbox with the given timer, title, and message.
+     * @param checkBox The checkbox associated with the reminder.
+     * @param timer The timer for the reminder.
+     * @param title The title of the reminder.
+     * @param message The message of the reminder.
+     */
     private void setupReminder(CheckBox checkBox, PauseTransition timer, String title, String message) {
         timer.setOnFinished(event -> {
             if (checkBox.isSelected()) {
@@ -72,6 +90,14 @@ public class NotifiSettingsController implements Initializable {
         });
     }
 
+
+    /**
+     * Shows a reminder popup with the given title and message if the checkbox is selected.
+     * @param checkBox The checkbox associated with the reminder.
+     * @param timer The timer for the reminder.
+     * @param title The title of the reminder.
+     * @param message The message of the reminder.
+     */
     private void showReminderPopup(CheckBox checkBox, PauseTransition timer, String title,String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -84,6 +110,13 @@ public class NotifiSettingsController implements Initializable {
             timer.playFromStart();
         }
     }
+
+
+    /**
+     * Handles the action when the back button is clicked.
+     * @param event The MouseEvent representing the button click.
+     * @throws IOException If an I/O error occurs during loading the FXML file.
+     */
     @FXML
     public void BackOnAction(MouseEvent event) throws IOException {
         Stage stage = (Stage) BackButton.getScene().getWindow();

@@ -20,6 +20,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
+/**
+ * Controller class for the Forgot Password functionality.
+ */
 public class ForgotPasswordController {
 
     @FXML
@@ -36,11 +40,24 @@ public class ForgotPasswordController {
     private Label resetPasswordMessageLabel;
 
 
+    /**
+     * Closes the current window when the cancel button is clicked.
+     *
+     * @param event The action event triggered by clicking the cancel button.
+     */
     public void cancelButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();
     }
 
+
+    /**
+     * Resets the password for the user account when the reset password button is clicked.
+     * Validates the input fields, checks if the email exists in the database,
+     * and updates the password if all conditions are met.
+     *
+     * @param event The action event triggered by clicking the reset password button.
+     */
     public void resetPasswordButtonOnAction(ActionEvent event) {
         Connection connectDB = DatabaseConnection.getInstance();
 

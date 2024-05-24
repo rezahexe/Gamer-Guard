@@ -21,6 +21,11 @@ import java.sql.*;
 import java.util.ResourceBundle;
 import java.net.URL;
 
+
+/**
+ * Controller class for the login.fxml file.
+ * Handles user login functionality.
+ */
 public class LoginController implements Initializable {
 
     @FXML
