@@ -6,6 +6,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
+
+/**
+ * Controller class for managing the terms and conditions view.
+ */
 public class TermsAndConditionsController {
 
     @FXML
@@ -18,6 +22,10 @@ public class TermsAndConditionsController {
     private Button registerButton;
 
 
+    /**
+     * Initializes the controller.
+     * Sets the text of the terms and conditions TextArea.
+     */
     @FXML
     public void initialize(){
         termsAndConditions.setText(""" 
@@ -38,16 +46,32 @@ Lorem sed risus ultricies tristique nulla aliquet.
 Elementum nibh tellus molestie nunc non blandit massa.""");
     }
 
+
+    /**
+     * Handles the action when the agree CheckBox is clicked.
+     * Disables or enables the nextButton based on whether the CheckBox is selected.
+     */
     @FXML
     protected void  onAgreeCheckBoxClick() {
         boolean accepted = agreeCheckBox.isSelected();
         nextButton.setDisable(!accepted);
     }
 
+
+    /**
+     * Sets the registerButton.
+     *
+     * @param registerButton the registerButton to set
+     */
     public void setRegisterButton(Button registerButton) {
         this.registerButton = registerButton;
     }
 
+
+    /**
+     * Handles the action when the nextButton is clicked.
+     * Enables the registerButton and closes the current stage.
+     */
     @FXML
     protected void onNextButtonClick() {
         Stage stage = (Stage) nextButton.getScene().getWindow();
@@ -56,6 +80,10 @@ Elementum nibh tellus molestie nunc non blandit massa.""");
     }
 
 
+    /**
+     * Handles the action when the cancelButton is clicked.
+     * Closes the current stage.
+     */
     @FXML
     protected void onCancelButtonClick() {
         Stage stage = (Stage) nextButton.getScene().getWindow();

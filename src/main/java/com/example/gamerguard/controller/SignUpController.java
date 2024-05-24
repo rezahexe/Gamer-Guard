@@ -50,9 +50,14 @@ public class SignUpController implements Initializable {
     public static Button registerButtonStatic;
 
 
-
-
-
+    /**
+     * Initializes the controller with the Gamer Guard logo image.
+     * Loads the logo image from the specified file path and sets it
+     * as the image source for the logoImageView.
+     *
+     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resource bundle that contains localized objects for the controller, or null if there is no resource bundle.
+     */
     public  void initialize (URL url, ResourceBundle resourceBundle) {
         registerButtonStatic = registerButton;
         File logoFile = new File("Images/GAMER_GUARD_LOGO.png");
@@ -61,7 +66,23 @@ public class SignUpController implements Initializable {
     }
 
 
-
+    /**
+     * Registers a new user by retrieving input, hashing the password, checking for email uniqueness, and inserting the user data into the database.
+     *
+     * @return {@code true} if registration is successful, {@code false} otherwise.
+     *
+     * The method performs the following steps:
+     * <ol>
+     *   <li>Retrieves user input from text fields and hashes the password.</li>
+     *   <li>Checks if the email address is already registered.</li>
+     *   <li>If the email is registered, displays an error message and returns {@code false}.</li>
+     *   <li>If not, inserts the user data into the database and sets session information.</li>
+     * </ol>
+     *
+     * <p>Exceptions during email check or data insertion are caught, logged, and result in {@code false} being returned.</p>
+     *
+     * <p><b>Note:</b> Assumes {@code DatabaseConnection}, {@code HashInput}, {@code SessionInfo}, and relevant UI components are defined and accessible.</p>
+     */
     public boolean registerUser() {
         Connection connectDB = DatabaseConnection.getInstance();
 
@@ -111,6 +132,18 @@ public class SignUpController implements Initializable {
     }
 
 
+    /**
+     * Handles the action event triggered when the terms and conditions hyperlink is clicked.
+     * <p>
+     * This method loads the "termsandconditions.fxml" file to display the terms and conditions
+     * in a new window. The new window is set with a fixed size of 600x400 pixels. The controller
+     * for the terms and conditions view is obtained from the FXMLLoader, and the register button
+     * is passed to the controller for further interactions.
+     * </p>
+     *
+     * @param event The action event triggered by clicking the terms and conditions hyperlink.
+     * @throws IOException If an input or output exception occurs while loading the FXML file.
+     */
     public void termsAndConditionsHyperlinkOnAction(ActionEvent event) throws IOException {
 //        Stage stage = (Stage) termsAndConditionsHyperlink.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("termsandconditions.fxml"));
@@ -123,6 +156,22 @@ public class SignUpController implements Initializable {
         termsAndConditionsStage.show();
     }
 
+
+    /**
+     * Handles the action event triggered by the register button.
+     * <p>
+     * This method retrieves the input from text fields for first name, last name, email address, password,
+     * and confirm password. It validates that none of these fields are empty and that the password matches
+     * the confirmed password. If all validations pass, it attempts to register the user by calling
+     * {@code registerUser()}. If the registration is successful, it opens the dashboard by calling
+     * {@code openDashboard()}. If an IOException occurs during this process, it prints the stack trace.
+     * </p>
+     * <p>
+     * In case of validation failure, appropriate error messages are displayed on {@code registerMessageLabel}.
+     * </p>
+     *
+     * @param event the action event triggered by the register button
+     */
     public void registerButtonOnAction (ActionEvent event) {
 
         String firstname = firstnameTextField.getText();
@@ -150,6 +199,14 @@ public class SignUpController implements Initializable {
 
     }
 
+
+    /**
+     * Handles the action event when the login hyperlink is clicked.
+     * Loads the login form from an FXML file and sets it as the scene for the current stage.
+     *
+     * @param event The ActionEvent triggered by clicking the login hyperlink.
+     * @throws IOException If an error occurs while loading the FXML file.
+     */
     public void loginHyperlinkOnAction(ActionEvent event) throws IOException {
         Stage stage = (Stage) loginHyperlink.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login.fxml"));
@@ -157,6 +214,17 @@ public class SignUpController implements Initializable {
         stage.setScene(scene);
     }
 
+
+    /**
+     * Opens the dashboard scene.
+     * <p>
+     * This method loads the "dashboard.fxml" file to create a new scene and sets it on the current stage.
+     * The scene's dimensions are defined by the constants {@code HelloApplication.WIDTH} and {@code HelloApplication.HEIGHT}.
+     * The current stage is obtained from the scene of the {@code registerButton}.
+     * </p>
+     *
+     * @throws IOException if the FXML file cannot be loaded.
+     */
     public void openDashboard() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
@@ -164,6 +232,13 @@ public class SignUpController implements Initializable {
         stage.setScene(scene);
     }
 
+
+    /**
+     * Handles the action event triggered by the cancel button.
+     * Closes the current stage and exits the application platform.
+     *
+     * @param event The ActionEvent triggered by the cancel button.
+     */
     public void cancelButtonOnAction(ActionEvent event) {
         Stage stage = (Stage) cancelButton.getScene().getWindow();
         stage.close();

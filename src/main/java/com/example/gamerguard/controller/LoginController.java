@@ -75,6 +75,14 @@ public class LoginController implements Initializable {
         }
     }
 
+
+    /**
+     * Handles the action event triggered when the signup hyperlink is clicked.
+     * This method loads the sign-up FXML file and sets the scene to the new sign-up page.
+     *
+     * @param event the event triggered by clicking the signup hyperlink
+     * @throws IOException if the FXML file cannot be loaded
+     */
     public void signupHyperlinkOnAction(ActionEvent event) throws IOException {
         Stage stage = (Stage) signupHyperlink.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("sign-up.fxml"));
@@ -82,6 +90,17 @@ public class LoginController implements Initializable {
         stage.setScene(scene);
     }
 
+
+    /**
+     * Handles the action event when the "Forgot Password" hyperlink is clicked.
+     *
+     * <p>This method loads the "otpnosession.fxml" file to display an OTP (One-Time Password)
+     * input window. It initializes the new stage with a 600x400 scene and shows the OTP
+     * window modally, blocking the current window until the OTP window is closed.</p>
+     *
+     * @param event the action event triggered by clicking the "Forgot Password" hyperlink.
+     * @throws IOException if there is an error loading the FXML file.
+     */
     public void forgotPasswordHyperlinkOnAction(ActionEvent event) throws IOException {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("otpnosession.fxml"));
@@ -103,6 +122,16 @@ public class LoginController implements Initializable {
     }
 
 
+    /**
+     * Validates the user's login credentials by checking the database for a matching email and hashed password.
+     * <p>
+     * If a match is found, session information is updated and the dashboard is opened. If no match is found,
+     * an error message is displayed. Logs any {@link SQLException} or {@link IOException} that occurs.
+     * </p>
+     *
+     * @throws SQLException if a database access error occurs
+     * @throws IOException if an I/O error occurs
+     */
     public void validateLogin() {
         Connection connectDB = DatabaseConnection.getInstance();
         String password = passwordPasswordField.getText();
@@ -139,7 +168,16 @@ public class LoginController implements Initializable {
     }
 
 
-
+    /**
+     * Opens the dashboard scene.
+     * <p>
+     * This method loads the "dashboard.fxml" file to create a new scene and sets it on the current stage.
+     * The scene's dimensions are defined by the constants {@code HelloApplication.WIDTH} and {@code HelloApplication.HEIGHT}.
+     * The current stage is obtained from the scene of the {@code loginButton}.
+     * </p>
+     *
+     * @throws IOException if the FXML file cannot be loaded.
+     */
     public void openDashboard() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
