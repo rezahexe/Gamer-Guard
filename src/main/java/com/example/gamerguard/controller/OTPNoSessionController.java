@@ -1,10 +1,12 @@
 package com.example.gamerguard.controller;
 
 import com.example.gamerguard.HelloApplication;
+import com.example.gamerguard.controller.Settings.ChangePasswordNoSessionController;
 import com.example.gamerguard.model.DatabaseConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -61,16 +63,22 @@ public class OTPNoSessionController {
                     Stage otpStage = new Stage();
                     Scene scene = new Scene(fxmlLoader.load(), 600, 400);
                     otpStage.setScene(scene);
+
                     OTPNoSessionSendController controller = fxmlLoader.getController();
-                    controller.setEmailAddress(retrievedEmailAddress); // Pass email address to OTPNoSessionSendController
+                    controller.setEmailAddress(retrievedEmailAddress);
                     otpStage.showAndWait();
                     if (controller.isOtpVerified()) {
-                        System.out.println("Hello, world!");
-                        FXMLLoader passwordLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/change-password.fxml"));
+                        FXMLLoader passwordLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/change-passwordnosession.fxml"));
                         Stage passwordStage = new Stage();
                         Scene passwordScene = new Scene(passwordLoader.load(), 600, 400);
                         passwordStage.setScene(passwordScene);
                         passwordStage.show();
+
+                        ChangePasswordNoSessionController controller2 = passwordLoader.getController();
+                        controller2.setEmailAddress(retrievedEmailAddress);
+
+                        Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                        currentStage.close();
                     }
                 } catch (IOException ex) {
                     ex.printStackTrace();
