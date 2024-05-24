@@ -2,6 +2,8 @@ package com.example.gamerguard.controller;
 
 import com.example.gamerguard.model.DatabaseConnection;
 import com.example.gamerguard.HelloApplication;
+import com.example.gamerguard.other.HashInput;
+import com.example.gamerguard.other.SessionInfo;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,11 +15,11 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
@@ -69,9 +71,10 @@ public class SignUpController implements Initializable {
         String lastname = lastnameTextField.getText();
         String emailaddress = emailTextField.getText();
         String password = setPasswordField.getText();
+        String hashedpassword = HashInput.hashInput(password);
 
         String insertFields = "INSERT INTO user_account(firstname, lastname, emailaddress, password) VALUES ('";
-        String insertValues = firstname + "','"+ lastname + "','" + emailaddress + "','" + password + "')";
+        String insertValues = firstname + "','"+ lastname + "','" + emailaddress + "','" + hashedpassword + "')";
         String insertToRegister = insertFields + insertValues;
 
         try {
@@ -79,6 +82,15 @@ public class SignUpController implements Initializable {
             statement.executeUpdate(insertToRegister);
 
             registerMessageLabel.setText("Registered successfully!");
+
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    int userId = generatedKeys.getInt(1);
+                    SessionInfo.setUserId(userId);
+                }
+            }
+            SessionInfo.setUserName(firstname);
+            SessionInfo.setUserEmail(emailaddress);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -110,7 +122,6 @@ public class SignUpController implements Initializable {
         if (!firstname.isEmpty() && !lastname.isEmpty() && !emailaddress.isEmpty() && !password.isEmpty()) {
             if (password.equals(confirmPassword)) {
             registerUser();
-
             try {
                 openDashboard();
             } catch (IOException e) {

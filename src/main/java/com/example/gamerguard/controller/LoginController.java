@@ -2,6 +2,7 @@ package com.example.gamerguard.controller;
 
 import com.example.gamerguard.model.DatabaseConnection;
 import com.example.gamerguard.HelloApplication;
+import com.example.gamerguard.other.HashInput;
 import com.example.gamerguard.other.SessionInfo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,15 +11,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 import java.net.URL;
 
@@ -51,6 +50,10 @@ public class LoginController implements Initializable {
      * @param resourceBundle The resource bundle that contains localized objects for the controller, or null if there is no resource bundle.
      */
     public  void initialize (URL url, ResourceBundle resourceBundle) {
+        String userInput = "1";
+        String hashed = HashInput.hashInput(userInput);
+        System.out.println("Hashed input: " + hashed);
+
         File logoFile = new File("Images/GAMER_GUARD_LOGO.png");
         Image logoImage = new Image(logoFile.toURI().toString());
         logoImageView.setImage(logoImage);
@@ -84,29 +87,56 @@ public class LoginController implements Initializable {
     }
 
     public void forgotPasswordHyperlinkOnAction(ActionEvent event) throws IOException {
-//        Stage stage = (Stage) forgotPasswordHyperlink.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("forgotpassword.fxml"));
-        Stage forgotPasswordStage = new Stage();
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        forgotPasswordStage.setScene(scene);
-        forgotPasswordStage.show();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("otpnosession.fxml"));
+            Stage otpStage = new Stage();
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            otpStage.setScene(scene);
+            OTPController controller = fxmlLoader.getController();
+            otpStage.showAndWait();
+            if (controller.isOtpVerified()) {
+                FXMLLoader passwordLoader = new FXMLLoader(HelloApplication.class.getResource("forgotpassword.fxml"));
+                Stage passwordStage = new Stage();
+                Scene passwordScene = new Scene(passwordLoader.load(), 600, 400);
+                passwordStage.setScene(passwordScene);
+                passwordStage.show();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
+
+//    public void forgotPasswordHyperlinkOnAction(ActionEvent event) throws IOException {
+////        Stage stage = (Stage) forgotPasswordHyperlink.getScene().getWindow();
+//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("forgotpassword.fxml"));
+//        Stage forgotPasswordStage = new Stage();
+//        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+//        forgotPasswordStage.setScene(scene);
+//        forgotPasswordStage.show();
+//    }
 
 
 
     public void validateLogin() {
         Connection connectDB = DatabaseConnection.getInstance();
+        String password = passwordPasswordField.getText();
+        String hashedPassword = HashInput.hashInput(password);
+        System.out.println("Hashed input: " + hashedPassword);
 
-        String verifyLogin = "SELECT count(1), account_id, firstname, emailaddress FROM user_account WHERE emailaddress = '" + emailTextField.getText() + "' AND password = '" + passwordPasswordField.getText() + "'" ;
+        // Include the password column in the query for debugging
+        String verifyLogin = "SELECT count(1), account_id, firstname, emailaddress, password FROM user_account WHERE emailaddress = ?";
 
-        try {
+        try (PreparedStatement preparedStatement = connectDB.prepareStatement(verifyLogin)) {
+            preparedStatement.setString(1, emailTextField.getText());
 
-            Statement statement =  connectDB.createStatement();
-            ResultSet queryResult = statement.executeQuery(verifyLogin);
+            ResultSet queryResult = preparedStatement.executeQuery();
 
-            while(queryResult.next()) {
-                if(queryResult.getInt(1) == 1){
+            if (queryResult.next()) {
+                // Print the stored hashed password for debugging
+                String storedHashedPassword = queryResult.getString("password");
+                System.out.println("Stored hashed password: " + storedHashedPassword);
 
+                if (queryResult.getInt(1) == 1 && storedHashedPassword.equals(hashedPassword)) {
                     int userId = queryResult.getInt("account_id");
                     SessionInfo.setUserId(userId);
                     String userName = queryResult.getString("firstname");
@@ -114,16 +144,18 @@ public class LoginController implements Initializable {
                     String userEmail = queryResult.getString("emailaddress");
                     SessionInfo.setUserEmail(userEmail);
                     openDashboard();
-
                 } else {
                     loginMessageLabel.setText("Invalid login. Please try again");
                 }
+            } else {
+                loginMessageLabel.setText("Invalid login. Please try again");
             }
 
         } catch (SQLException | IOException ex) {
             System.err.println(ex);
         }
     }
+
 
 
     public void openDashboard() throws IOException {
