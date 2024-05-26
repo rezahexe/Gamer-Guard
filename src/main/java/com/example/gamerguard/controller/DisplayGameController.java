@@ -113,11 +113,9 @@ public class DisplayGameController implements Initializable {
                                     long daysDifference = ChronoUnit.DAYS.between(date2, date1);
                                     if (daysDifference > 7){
                                         hour = game.getPlaytime()-prevTime;
-                                        System.out.println(">:3 Reset hours due to day");
                                     }
                                     else{
                                         hour = gameHour+game.getPlaytime()-prevTime;
-                                        System.out.println(">:3 Add hours");
                                     }
                                     // Update previous total play time and time recorded
                                     int newPrevTime = game.getPlaytime();
@@ -194,8 +192,6 @@ public class DisplayGameController implements Initializable {
             stmt.setString(4, String.valueOf(userId));
             stmt.setString(5, gameName);
             stmt.executeUpdate();
-            System.out.println("Hour for " + gameName + " is " + hour);
-            System.out.println(">:3 Updated table");
         }
     }
 
@@ -219,7 +215,6 @@ public class DisplayGameController implements Initializable {
             stmt.setInt(4, hour);
             stmt.setString(5, currentDate);
             stmt.executeUpdate();
-            System.out.println(">:3 Added table");
         }
     }
 

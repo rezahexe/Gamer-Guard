@@ -93,7 +93,6 @@ public class DashboardController implements Initializable {
                     String shortGameName = gameName.length() > 3 ? gameName.substring(0, 3) : gameName;
                     series.getData().add(new XYChart.Data<>(shortGameName, gameHour));
                     gameNames.add(gameName);
-                    System.out.println(">:3 Hour for " + gameName + " is: " + gameHour);
                 }
             }
 

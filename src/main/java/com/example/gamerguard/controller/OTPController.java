@@ -107,17 +107,14 @@ public class OTPController {
             transport = newSession.getTransport("smtp");
             transport.connect(emailHost, fromUser, fromUserPassword);
             transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
-            System.out.println("Email successfully sent!!!");
         } catch (MessagingException e) {
             e.printStackTrace();
-            System.err.println("Error sending email: " + e.getMessage());
         } finally {
             if (transport != null) {
                 try {
                     transport.close();
                 } catch (MessagingException e) {
                     e.printStackTrace();
-                    System.err.println("Error closing transport: " + e.getMessage());
                 }
             }
         }
@@ -131,7 +128,6 @@ public class OTPController {
     public static String generateOTP() {
         int randomNum = (int) (Math.random() * 9000) + 1000;
         String otp = String.valueOf(randomNum);
-        System.out.println("OTP is " + otp); //Comment this out
         return otp;
     }
 

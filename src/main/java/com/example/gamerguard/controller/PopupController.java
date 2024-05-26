@@ -33,8 +33,6 @@ public class PopupController {
      */
     @FXML
     private void handleSettings() {
-        // Implement your settings handling logic here
-        System.out.println("Settings button clicked");
     }
 
     /**
