@@ -144,6 +144,13 @@ public class ProfileSettingsController implements Initializable {
                             insertStmt.setString(2, newSteamId);
                             insertStmt.executeUpdate();
                         }
+                        String deletePlaytime = "DELETE FROM user_gametime WHERE user_id = ?";
+                        try (PreparedStatement deletePlaytimeStmt = connectDB.prepareStatement(deletePlaytime)) {
+                            deletePlaytimeStmt.setInt(1, userId);
+                            int rowsDeleted = deletePlaytimeStmt.executeUpdate();
+                        } catch (SQLException ex) {
+                            System.err.println("Failed to delete from user_gametime: " + ex.getMessage());
+                        }
                     }
                     resetPageContent(); //Reset page content for text box to display the updated steam ID.
                 }

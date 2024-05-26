@@ -107,18 +107,21 @@ public class DisplayGameController implements Initializable {
                                     //If game already exists in database, calculate the hours played in the week comparing last total playtime
                                     String prevDate = rs2.getString("recent_day_save");
                                     int prevTime = rs2.getInt("game_prevtime");
+                                    int gameHour = rs2.getInt("game_hour");
                                     LocalDate date1 = LocalDate.parse(formattedDate);
                                     LocalDate date2 = LocalDate.parse(prevDate);
                                     long daysDifference = ChronoUnit.DAYS.between(date2, date1);
                                     if (daysDifference > 7){
                                         hour = game.getPlaytime()-prevTime;
+                                        System.out.println(">:3 Reset hours due to day");
                                     }
                                     else{
-                                        hour += game.getPlaytime()-prevTime;
+                                        hour = gameHour+game.getPlaytime()-prevTime;
+                                        System.out.println(">:3 Add hours");
                                     }
                                     // Update previous total play time and time recorded
                                     int newPrevTime = game.getPlaytime();
-                                    updateGamePrevTime(connectDB, String.valueOf(userId), game.getName(), newPrevTime, currentDate.format(formatter));
+                                    updateGamePrevTime(connectDB, String.valueOf(userId), game.getName(), newPrevTime, currentDate.format(formatter), hour);
                                 } else {
                                     // If user does not game recorded, insert a new row
                                     insertNewGameRecord(connectDB, String.valueOf(userId), game.getName(), game.getPlaytime(), hour, String.valueOf(currentDate));
@@ -182,14 +185,16 @@ public class DisplayGameController implements Initializable {
      * @param newRecentDaySaved Date of last checked for increase of steam play time
      * @throws SQLException SQL exception
      */
-    private void updateGamePrevTime(Connection conn, String userId, String gameName, int newPrevTime, String newRecentDaySaved) throws SQLException {
-        String updateQuery = "UPDATE user_gametime SET game_prevtime = ?, recent_day_save = ? WHERE user_id = ? AND game_name = ?";
+    private void updateGamePrevTime(Connection conn, String userId, String gameName, int newPrevTime, String newRecentDaySaved, int hour) throws SQLException {
+        String updateQuery = "UPDATE user_gametime SET game_prevtime = ?, recent_day_save = ?, game_hour = ? WHERE user_id = ? AND game_name = ?";
         try (PreparedStatement stmt = conn.prepareStatement(updateQuery)) {
             stmt.setInt(1, newPrevTime);
             stmt.setString(2, newRecentDaySaved);
-            stmt.setString(3, userId);
-            stmt.setString(4, gameName);
+            stmt.setInt(3, hour);
+            stmt.setString(4, String.valueOf(userId));
+            stmt.setString(5, gameName);
             stmt.executeUpdate();
+            System.out.println("Hour for " + gameName + " is " + hour);
             System.out.println(">:3 Updated table");
         }
     }
@@ -229,14 +234,14 @@ public class DisplayGameController implements Initializable {
     }
 
     public void settingsButtonOnAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/Settings.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         Stage stage = (Stage) settingsButton.getScene().getWindow();
         stage.setScene(scene);
     }
 
     public void profileButtonOnAction(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("profile-settings.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/profile-settings.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         Stage stage = (Stage) profileButton.getScene().getWindow();
         stage.setScene(scene);
