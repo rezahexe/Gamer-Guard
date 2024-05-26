@@ -59,6 +59,7 @@ public class DashboardController implements Initializable {
     public Button gamesButton;
 
     public Button profileButton;
+    public Text text_display_username;
 
 
     private XYChart.Series<String, Number> averageSeries;
@@ -66,6 +67,9 @@ public class DashboardController implements Initializable {
     //Line Chart
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize the chart with data
+        String userName = SessionInfo.getUserName();
+        text_display_username.setText(userName);
+
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Game Hours");
 
