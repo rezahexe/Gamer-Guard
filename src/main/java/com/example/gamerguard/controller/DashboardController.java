@@ -65,60 +65,65 @@ public class DashboardController implements Initializable {
 
     //Line Chart
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         // Initialize the chart with data
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("This Week");
+        series.setName("Game Hours");
 
-        // Add sample data (replace this with your actual data)
-        series.getData().add(new XYChart.Data<>("Mon", 3.5));
-        series.getData().add(new XYChart.Data<>("Tue", 2.5));
-        series.getData().add(new XYChart.Data<>("Wed", 3));
-        series.getData().add(new XYChart.Data<>("Thu", 4));
-        series.getData().add(new XYChart.Data<>("Fri", 6.6));
-        series.getData().add(new XYChart.Data<>("Sat", 6));
-        series.getData().add(new XYChart.Data<>("Sun", 4));
+        XYChart.Series<String, Number> averageSeries = new XYChart.Series<>();
+        averageSeries.setName("");
 
-        // Create a new series for average playtime per day
-        averageSeries = new XYChart.Series<>();
-        averageSeries.setName("Goal Time");
+        Connection connectDB = DatabaseConnection.getInstance();
 
-        // Add sample average data (replace this with your actual data)
-        averageSeries.getData().add(new XYChart.Data<>("Mon", 2));
-        averageSeries.getData().add(new XYChart.Data<>("Tue", 2));
-        averageSeries.getData().add(new XYChart.Data<>("Wed", 3));
-        averageSeries.getData().add(new XYChart.Data<>("Thu", 1));
-        averageSeries.getData().add(new XYChart.Data<>("Fri", 4));
-        averageSeries.getData().add(new XYChart.Data<>("Sat", 5));
-        averageSeries.getData().add(new XYChart.Data<>("Sun", 3));
+        String fetchGameTimeQuery = "SELECT game_name, game_hour FROM user_gametime WHERE user_id = ?";
+        try (PreparedStatement preparedStatement = connectDB.prepareStatement(fetchGameTimeQuery)) {
+            preparedStatement.setInt(1, SessionInfo.getUserId());
 
-        // Set the data to the chart
-        playTimeChart.getData().addAll(series, averageSeries);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-        List<String> tasks = fetchTasks(); // Fetch tasks from some data source
+            List<String> gameNames = new ArrayList<>();
+            while (resultSet.next()) {
+                String gameName = resultSet.getString("game_name");
+                int gameHour = resultSet.getInt("game_hour");
 
-        if (!tasks.isEmpty()) {
-            // Display tasks in the task_display elements
-            if (tasks.size() >= 1) {
-                task_display_one.setText(tasks.get(0));
+                if (gameHour > 0) {
+                    String shortGameName = gameName.length() > 3 ? gameName.substring(0, 3) : gameName;
+                    series.getData().add(new XYChart.Data<>(shortGameName, gameHour));
+                    gameNames.add(gameName);
+                    System.out.println(">:3 Hour for " + gameName + " is: " + gameHour);
+                }
             }
-            if (tasks.size() >= 2) {
-                task_display_two.setText(tasks.get(1));
+
+            // Set the data to the chart
+            playTimeChart.getData().addAll(series, averageSeries);
+
+            List<String> tasks = fetchTasks(); // Fetch tasks from some data source
+
+            if (!tasks.isEmpty()) {
+                // Display tasks in the task_display elements
+                if (tasks.size() >= 1) {
+                    task_display_one.setText(tasks.get(0));
+                }
+                if (tasks.size() >= 2) {
+                    task_display_two.setText(tasks.get(1));
+                }
+                if (tasks.size() >= 3) {
+                    task_display_three.setText(tasks.get(2));
+                }
+                if (tasks.size() >= 4) {
+                    task_display_four.setText(tasks.get(3));
+                }
+                if (tasks.size() >= 5) {
+                    task_display_five.setText(tasks.get(4));
+                }
+            } else {
+                // If no tasks are available, display a default message
+                task_display_one.setText("Add a task");
             }
-            if (tasks.size() >= 3) {
-                task_display_three.setText(tasks.get(2));
-            }
-            if (tasks.size() >= 4) {
-                task_display_four.setText(tasks.get(3));
-            }
-            if (tasks.size() >= 5) {
-                task_display_five.setText(tasks.get(4));
-            }
-        } else {
-            // If no tasks are available, display a default message
-            task_display_one.setText("Add a task");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
+
 
     public List<String> fetchTasks() {
         // Implement the logic to fetch tasks from some data source
