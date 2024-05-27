@@ -54,7 +54,14 @@
                </Pane>
 
                <!-- LineChart with fx:id for controller access -->
-               <LineChart fx:id="playTimeChart" layoutX="33.0" layoutY="41.0" legendSide="TOP" prefHeight="215.0" prefWidth="434.0" title="Play Time Per Day">
+               <Text layoutX="649.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Productivity usage goal:">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font>
+               </Text>
+
+               <!-- Additional Text and TextAreas -->
+               <LineChart fx:id="playTimeChart" layoutX="33.0" layoutY="41.0" legendSide="TOP" prefHeight="215.0" prefWidth="434.0" title="Time Played This Week">
                   <xAxis>
                      <CategoryAxis side="BOTTOM" />
                   </xAxis>
@@ -62,13 +69,6 @@
                      <NumberAxis side="LEFT" />
                   </yAxis>
                </LineChart>
-
-               <!-- Additional Text and TextAreas -->
-               <Text layoutX="649.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Productivity usage goal:">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font>
-               </Text>
                <Text layoutX="655.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game apps usage goal:">
                   <font>
                      <Font name="System Bold" size="12.0" />

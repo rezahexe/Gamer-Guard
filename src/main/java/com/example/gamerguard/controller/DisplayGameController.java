@@ -27,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -52,9 +53,12 @@ public class DisplayGameController implements Initializable {
     private TableColumn<Map<String, Object>, Integer> colHoursTotal;
     @FXML
     private TableColumn<Map<String, Object>, String> colStatus;
-
+    public Text text_display_username;
 
     public void initialize (URL url, ResourceBundle resourceBundle) {
+        String userName = SessionInfo.getUserName();
+        text_display_username.setText(userName);
+
         //Table view message if there are no games, invalid Steam ID, or no Steam ID
         Label placeholderLabel = new Label("Add a valid steam ID in Profile Settings");
         tableView.setPlaceholder(placeholderLabel);
