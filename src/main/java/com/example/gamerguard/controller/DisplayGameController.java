@@ -129,17 +129,17 @@ public class DisplayGameController implements Initializable {
                             e.printStackTrace();
                         }
                         // Update display status depending on hours played
-                        if (hour > 14) {
+                        if (hour > 14*60) {
                             status = "Excessive";
-                        } else if (hour > 0 && hour <= 14) {
+                        } else if (hour > 0 && hour <= 14*60) {
                             status = "Healthy";
                         }
                         // Update data for rows
                         Map<String, Object> rowData = new HashMap<>();
                         rowData.put("Top", i+1);
                         rowData.put("Name", game.getName());
-                        rowData.put("Hours This week", hour);
-                        rowData.put("Hours Total", game.getPlaytime());
+                        rowData.put("Hours This week", hour/60);
+                        rowData.put("Hours Total", game.getPlaytime()/60);
                         rowData.put("Status", status);
                         data.add(rowData);
                     }

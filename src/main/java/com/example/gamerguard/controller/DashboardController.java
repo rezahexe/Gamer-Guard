@@ -87,7 +87,7 @@ public class DashboardController implements Initializable {
             List<String> gameNames = new ArrayList<>();
             while (resultSet.next()) {
                 String gameName = resultSet.getString("game_name");
-                int gameHour = resultSet.getInt("game_hour");
+                int gameHour = resultSet.getInt("game_hour")/60;
 
                 if (gameHour > 0) {
                     String shortGameName = gameName.length() > 3 ? gameName.substring(0, 3) : gameName;
