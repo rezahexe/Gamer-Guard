@@ -24,6 +24,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+
+/**
+ * Controller class for the Dashboard.
+ * Handles the initialization and interactions in the Dashboard UI.
+ */
 public class DashboardController implements Initializable {
 
     @FXML
@@ -36,35 +41,35 @@ public class DashboardController implements Initializable {
     public Text task_display_four;
     @FXML
     public Text task_display_five;
-
     @FXML
     private TextField taskTextField;
-
     @FXML
     private LineChart<String, Number> playTimeChart;
-
     @FXML
     private TextArea productivityTextArea;
-
     @FXML
     private TextArea gameAppsTextArea;
-
     @FXML
     private TextArea distractionTextArea;
-
     @FXML
     private Button settingsButton;
-
     @FXML
     public Button gamesButton;
-
+    @FXML
     public Button profileButton;
+    @FXML
     public Text text_display_username;
 
 
     private XYChart.Series<String, Number> averageSeries;
 
-    //Line Chart
+    /**
+     * Initializes the controller class.
+     *
+     * @param url the location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle the resources used to localize the root object, or null if the root object was not localized.
+     */
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize the chart with data
         String userName = SessionInfo.getUserName();
@@ -127,7 +132,11 @@ public class DashboardController implements Initializable {
         }
     }
 
-
+    /**
+     * Fetches tasks from the database.
+     *
+     * @return a list of tasks.
+     */
     public List<String> fetchTasks() {
         // Implement the logic to fetch tasks from some data source
         List<String> tasks = new ArrayList<>();
@@ -178,8 +187,12 @@ public class DashboardController implements Initializable {
         }
     }
 
-    // To do list code
-
+    /**
+     * Creates a new task in the to-do list and updates the display.
+     *
+     * @param event the action event triggered by the user.
+     * @throws SQLException if a database access error occurs.
+     */
     @FXML
     public void createToDoList(ActionEvent event) throws SQLException {
         Connection connectDB = DatabaseConnection.getInstance();
@@ -223,7 +236,11 @@ public class DashboardController implements Initializable {
         }
     }
 
-    // Delete all tasks
+    /**
+     * Deletes all tasks from the to-do list and updates the display.
+     *
+     * @param event the action event triggered by the user.
+     */
     @FXML
     private void deleteAllTasks(ActionEvent event) {
         try {
@@ -247,33 +264,63 @@ public class DashboardController implements Initializable {
         }
     }
 
-    // Delete only one specific task
 
+    /**
+     * Deletes the first task from the to-do list.
+     *
+     * @param mouseEvent the mouse event triggered by the user.
+     */
     @FXML
     private void deleteTaskOne(javafx.scene.input.MouseEvent mouseEvent) {
         deleteTask(1);
     }
 
+    /**
+     * Deletes the second task from the to-do list.
+     *
+     * @param mouseEvent the mouse event triggered by the user.
+     */
     @FXML
     private void deleteTaskTwo(javafx.scene.input.MouseEvent mouseEvent) {
         deleteTask(2);
     }
 
+    /**
+     * Deletes the third task from the to-do list.
+     *
+     * @param mouseEvent the mouse event triggered by the user.
+     */
     @FXML
     private void deleteTaskThree(javafx.scene.input.MouseEvent mouseEvent) {
         deleteTask(3);
     }
 
+
+    /**
+     * Deletes the fourth task from the to-do list.
+     *
+     * @param mouseEvent the mouse event triggered by the user.
+     */
     @FXML
     private void deleteTaskFour(javafx.scene.input.MouseEvent mouseEvent) {
         deleteTask(4);
     }
 
+    /**
+     * Deletes the fifth task from the to-do list.
+     *
+     * @param mouseEvent the mouse event triggered by the user.
+     */
     @FXML
     private void deleteTaskFive(javafx.scene.input.MouseEvent mouseEvent) {
         deleteTask(5);
     }
 
+    /**
+     * Deletes a specific task from the to-do list.
+     *
+     * @param taskId the ID of the task to be deleted.
+     */
     private void deleteTask(int taskId) {
         try {
             Connection connectDB = DatabaseConnection.getInstance();
@@ -307,6 +354,10 @@ public class DashboardController implements Initializable {
         }
     }
 
+
+    /**
+     * Handles the action of clicking the "Hello" button.
+     */
     @FXML
     protected void onHelloButtonClick() {
         // Update chart data when button is clicked (for demonstration)
@@ -318,6 +369,11 @@ public class DashboardController implements Initializable {
         averageSeries.getData().forEach(data -> data.setYValue(data.getYValue().intValue() + 1));
     }
 
+
+    /**
+     * Handles the action of clicking the "Reset Goal" button.
+     * Resets the text areas and average series data to zero.
+     */
     @FXML
     protected void onResetGoalButtonClick() {
         // Reset text areas to "0 hrs/week"
@@ -329,6 +385,14 @@ public class DashboardController implements Initializable {
         averageSeries.getData().forEach(data -> data.setYValue(0));
     }
 
+
+    /**
+     * Handles the action of clicking the settings button.
+     * Loads the settings scene.
+     *
+     * @param event the action event triggered by the user.
+     * @throws IOException if an I/O error occurs.
+     */
     public void settingsButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/Settings.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
@@ -336,6 +400,14 @@ public class DashboardController implements Initializable {
         stage.setScene(scene);
     }
 
+
+    /**
+     * Handles the action of clicking the profile button.
+     * Loads the profile settings scene.
+     *
+     * @param event the action event triggered by the user.
+     * @throws IOException if an I/O error occurs.
+     */
     public void profileButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/profile-settings.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
@@ -343,6 +415,14 @@ public class DashboardController implements Initializable {
         stage.setScene(scene);
     }
 
+
+    /**
+     * Handles the action of clicking the games button.
+     * Loads the display games scene.
+     *
+     * @param event the action event triggered by the user.
+     * @throws IOException if an I/O error occurs.
+     */
     public void gamesButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("display-games.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);

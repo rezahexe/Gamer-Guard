@@ -11,10 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
@@ -40,8 +38,6 @@ public class LoginController implements Initializable {
     private TextField emailTextField;
     @FXML
     private PasswordField passwordPasswordField;
-/*    @FXML
-    private Hyperlink forgotPasswordHyperlink;*/
     @FXML
     private Hyperlink signupHyperlink;
 
@@ -114,13 +110,6 @@ public class LoginController implements Initializable {
             otpStage.setScene(scene);
             OTPNoSessionController controller = fxmlLoader.getController();
             otpStage.showAndWait();
-//            if (controller.isOtpVerified()) {
-//                FXMLLoader passwordLoader = new FXMLLoader(HelloApplication.class.getResource("forgotpassword.fxml"));
-//                Stage passwordStage = new Stage();
-//                Scene passwordScene = new Scene(passwordLoader.load(), 600, 400);
-//                passwordStage.setScene(passwordScene);
-//                passwordStage.show();
-//            }
         } catch (IOException ex) {
             ex.printStackTrace();
         }

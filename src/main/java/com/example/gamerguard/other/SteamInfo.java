@@ -13,8 +13,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//Open connection to the URL, send request method
+/**
+ * Class for retrieving information from Steam API.
+ */
 public class SteamInfo {
+
+    /**
+     * Retrieves a map of all Steam game IDs to their respective names.
+     *
+     * @param apiKey the Steam API key
+     * @return a map where the key is the game ID and the value is the game name
+     * @throws IOException if there is an issue with the API request
+     */
     private static Map<Integer, String> getGameNames(String apiKey) throws IOException {
         String url = "http://api.steampowered.com/ISteamApps/GetAppList/v2"; // GetAppList API endpoint url
         URL apiUrl = new URL(url);
@@ -51,6 +61,14 @@ public class SteamInfo {
             throw new IOException("Error: HTTP " + responseCode);
         }
     }
+
+    /**
+     * Retrieves a list of all games owned by a Steam user.
+     *
+     * @param apiKey the Steam API key
+     * @param steamId the Steam ID of the user
+     * @return a list of Game objects representing the user's owned games
+     */
     public static List<Game> getAllSteamGames(String apiKey, String steamId) {
         List<Game> gamesList = new ArrayList<>();
 
@@ -99,19 +117,39 @@ public class SteamInfo {
         }
         return gamesList;
     }
+
+    /**
+     * Class representing a game owned by a Steam user.
+     */
     public static class Game {
         private String name;
         private int playtime;
 
+        /**
+         * Constructor for creating a Game object.
+         *
+         * @param name the name of the game
+         * @param playtime the total playtime of the game in minutes
+         */
         public Game(String name, int playtime) {
             this.name = name;
             this.playtime = playtime;
         }
 
+        /**
+         * Gets the name of the game.
+         *
+         * @return the name of the game
+         */
         public String getName() {
             return name;
         }
 
+        /**
+         * Gets the total playtime of the game in minutes.
+         *
+         * @return the total playtime of the game in minutes
+         */
         public int getPlaytime() {
             return playtime;
         }

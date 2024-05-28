@@ -14,7 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -22,16 +21,19 @@ import java.sql.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-
 import javafx.scene.control.TableColumn;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.time.LocalDate;
 
+
+/**
+ * Controller class for displaying game information in the UI.
+ * Handles interactions and updates related to the game display.
+ */
 public class DisplayGameController implements Initializable {
     @FXML
     private Button infoButton;
@@ -55,6 +57,14 @@ public class DisplayGameController implements Initializable {
     private TableColumn<Map<String, Object>, String> colStatus;
     public Text text_display_username;
 
+
+    /**
+     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     *
+     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     */
+    @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
         String userName = SessionInfo.getUserName();
         text_display_username.setText(userName);
@@ -223,15 +233,12 @@ public class DisplayGameController implements Initializable {
     }
 
 
-    public void activityButtonOnAction(ActionEvent event) {
-    }
-
-    public void playlistButtonOnAction(ActionEvent event) {
-    }
-
-    public void friendsButtonOnAction(ActionEvent event) {
-    }
-
+    /**
+     * Handles the action when the settings button is clicked.
+     *
+     * @param event The event that triggered this action.
+     * @throws IOException If an input or output exception occurred
+     */
     public void settingsButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/Settings.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
@@ -239,6 +246,13 @@ public class DisplayGameController implements Initializable {
         stage.setScene(scene);
     }
 
+
+    /**
+     * Handles the action when the profile button is clicked.
+     *
+     * @param event The event that triggered this action.
+     * @throws IOException If an input or output exception occurred
+     */
     public void profileButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/profile-settings.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
@@ -246,6 +260,13 @@ public class DisplayGameController implements Initializable {
         stage.setScene(scene);
     }
 
+
+    /**
+     * Handles the action when the back button is clicked.
+     *
+     * @param event The event that triggered this action.
+     * @throws IOException If an input or output exception occurred
+     */
     @FXML
     public void BackOnAction(MouseEvent event) throws IOException {
         Stage stage = (Stage) BackButton.getScene().getWindow();
@@ -254,6 +275,12 @@ public class DisplayGameController implements Initializable {
         stage.setScene(scene);
     }
 
+
+    /**
+     * Handles the action when the info button is clicked.
+     *
+     * @param event The event that triggered this action.
+     */
     public void infoButtonOnAction(ActionEvent event) {
     }
 }
