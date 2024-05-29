@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-//import java.security.PublicKey;
+
 
 public class HelloApplication extends Application {
     public static final String TITLE = "Gamer Guard";

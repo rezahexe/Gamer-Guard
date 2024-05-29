@@ -25,7 +25,6 @@ public class BackButtonController implements Initializable {
 
     @FXML
     private ImageView BackButton;
-
     @FXML
     private Button ProfileSettingsButton;
 
