@@ -20,6 +20,8 @@ import java.sql.Statement;
  * Controller class for handling password change functionality.
  */
 public class ChangePasswordController {
+
+    @FXML
     public Button comfirmPasswordButton;
     @FXML
     private Button cancelButton;
