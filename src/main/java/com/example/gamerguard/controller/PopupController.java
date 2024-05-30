@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 
 /**
  * Controller class for the popup window.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class PopupController {
 

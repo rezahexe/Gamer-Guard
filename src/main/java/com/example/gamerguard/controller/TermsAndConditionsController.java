@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 
 /**
  * Controller class for managing the terms and conditions view.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class TermsAndConditionsController {
 

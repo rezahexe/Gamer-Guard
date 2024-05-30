@@ -5,6 +5,9 @@ package com.example.gamerguard.other;
  * The SessionInfo class holds session-related information for a user.
  * This includes the user's ID, username, and email. The class provides
  * static methods to get and set these values.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class SessionInfo {
     private static int userId;

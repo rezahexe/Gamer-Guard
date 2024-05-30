@@ -33,6 +33,9 @@ import java.time.LocalDate;
 /**
  * Controller class for displaying game information in the UI.
  * Handles interactions and updates related to the game display.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class DisplayGameController implements Initializable {
     @FXML
@@ -59,10 +62,9 @@ public class DisplayGameController implements Initializable {
 
 
     /**
-     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
+     * {@inheritDoc}
      *
-     * @param url The location used to resolve relative paths for the root object, or null if the location is not known.
-     * @param resourceBundle The resources used to localize the root object, or null if the root object was not localized.
+     * Initializes the controller class. This method is automatically called after the FXML file has been loaded.
      */
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
@@ -237,7 +239,7 @@ public class DisplayGameController implements Initializable {
      * Handles the action when the settings button is clicked.
      *
      * @param event The event that triggered this action.
-     * @throws IOException If an input or output exception occurred
+     * @throws java.io.IOException If an input or output exception occurred
      */
     public void settingsButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/Settings.fxml"));
@@ -251,7 +253,7 @@ public class DisplayGameController implements Initializable {
      * Handles the action when the profile button is clicked.
      *
      * @param event The event that triggered this action.
-     * @throws IOException If an input or output exception occurred
+     * @throws java.io.IOException If an input or output exception occurred
      */
     public void profileButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/profile-settings.fxml"));
@@ -265,7 +267,7 @@ public class DisplayGameController implements Initializable {
      * Handles the action when the back button is clicked.
      *
      * @param event The event that triggered this action.
-     * @throws IOException If an input or output exception occurred
+     * @throws java.io.IOException If an input or output exception occurred
      */
     @FXML
     public void BackOnAction(MouseEvent event) throws IOException {

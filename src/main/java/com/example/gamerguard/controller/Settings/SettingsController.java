@@ -20,6 +20,9 @@ import java.util.ResourceBundle;
 
 /**
  * Controller class for managing settings UI.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class SettingsController implements Initializable {
     @FXML
@@ -43,10 +46,9 @@ public class SettingsController implements Initializable {
 
 
     /**
-     * Initializes the controller after its root element has been completely processed.
+     * {@inheritDoc}
      *
-     * @param location  The location used to resolve relative paths for the root object, or null if the location is not known.
-     * @param resources The resources used to localize the root object, or null if the root object was not localized.
+     * Initializes the controller after its root element has been completely processed.
      */
     public void initialize(URL location, ResourceBundle resources) {
         File logoFile0 = new File("Images/button_back.png");
@@ -59,7 +61,7 @@ public class SettingsController implements Initializable {
      * Handles the back button action to navigate to the dashboard.
      *
      * @param event The mouse event triggered by clicking the back button.
-     * @throws IOException If an error occurs while loading the dashboard FXML file.
+     * @throws java.io.IOException If an error occurs while loading the dashboard FXML file.
      */
     @FXML
     public void BackOnAction(MouseEvent event) throws IOException {

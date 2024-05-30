@@ -22,6 +22,9 @@ import java.sql.SQLException;
 
 /**
  * Controller class for handling OTP verification without an active session.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class OTPNoSessionController {
 
@@ -40,6 +43,7 @@ public class OTPNoSessionController {
     /**
      * Checks for correct user OTP input.
      * Otherwise, update message label and inform incorrect OTP.
+     *
      * @param actionEvent Button click
      */
     public void verifyButtonOnAction(ActionEvent actionEvent) {

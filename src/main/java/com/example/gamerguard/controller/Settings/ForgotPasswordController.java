@@ -23,6 +23,9 @@ import java.sql.Statement;
 
 /**
  * Controller class for the Forgot Password functionality.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class ForgotPasswordController {
 

@@ -23,6 +23,9 @@ import java.net.URL;
 /**
  * Controller class for the login.fxml file.
  * Handles user login functionality.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class LoginController implements Initializable {
 
@@ -43,12 +46,11 @@ public class LoginController implements Initializable {
 
 
     /**
+     * {@inheritDoc}
+     *
      * Initializes the controller with the Gamer Guard logo image.
      * Loads the logo image from the specified file path and sets it
      * as the image source for the logoImageView.
-     *
-     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
-     * @param resourceBundle The resource bundle that contains localized objects for the controller, or null if there is no resource bundle.
      */
     public  void initialize (URL url, ResourceBundle resourceBundle) {
         File logoFile = new File("Images/GAMER_GUARD_LOGO.png");
@@ -82,7 +84,7 @@ public class LoginController implements Initializable {
      * This method loads the sign-up FXML file and sets the scene to the new sign-up page.
      *
      * @param event the event triggered by clicking the signup hyperlink
-     * @throws IOException if the FXML file cannot be loaded
+     * @throws java.io.IOException if the FXML file cannot be loaded
      */
     public void signupHyperlinkOnAction(ActionEvent event) throws IOException {
         Stage stage = (Stage) signupHyperlink.getScene().getWindow();
@@ -100,7 +102,7 @@ public class LoginController implements Initializable {
      * window modally, blocking the current window until the OTP window is closed.</p>
      *
      * @param event the action event triggered by clicking the "Forgot Password" hyperlink.
-     * @throws IOException if there is an error loading the FXML file.
+     * @throws java.io.IOException if there is an error loading the FXML file.
      */
     public void forgotPasswordHyperlinkOnAction(ActionEvent event) throws IOException {
         try {
@@ -120,11 +122,8 @@ public class LoginController implements Initializable {
      * Validates the user's login credentials by checking the database for a matching email and hashed password.
      * <p>
      * If a match is found, session information is updated and the dashboard is opened. If no match is found,
-     * an error message is displayed. Logs any {@link SQLException} or {@link IOException} that occurs.
+     * an error message is displayed. Logs any {@link SQLException} or {@link java.io.IOException} that occurs.
      * </p>
-     *
-     * @throws SQLException if a database access error occurs
-     * @throws IOException if an I/O error occurs
      */
     public void validateLogin() {
         Connection connectDB = DatabaseConnection.getInstance();
@@ -170,7 +169,7 @@ public class LoginController implements Initializable {
      * The current stage is obtained from the scene of the {@code loginButton}.
      * </p>
      *
-     * @throws IOException if the FXML file cannot be loaded.
+     * @throws java.io.IOException if the FXML file cannot be loaded.
      */
     public void openDashboard() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));

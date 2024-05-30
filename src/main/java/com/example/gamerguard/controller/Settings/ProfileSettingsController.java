@@ -27,6 +27,9 @@ import java.net.URL;
 
 /**
  * Controller for handling profile settings.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class ProfileSettingsController implements Initializable {
     @FXML
@@ -51,12 +54,11 @@ public class ProfileSettingsController implements Initializable {
 
 
     /**
+     * {@inheritDoc}
+     *
      * Initializes the controller.
      * Loads the logo images from the specified file path and sets it
      * as the image source. Set event handlers for mouse click events on buttons.
-     *
-     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
-     * @param resourceBundle The resource bundle that contains localized objects for the controller, or null if there is no resource bundle.
      */
     public void initialize(URL url, ResourceBundle resourceBundle) {
         File logoFile = new File("Images/defaultprofile.png");
@@ -106,6 +108,8 @@ public class ProfileSettingsController implements Initializable {
 
     /**
      * Opens the dashboard window and closes the current page.
+     *
+     * @throws java.io.IOException if any.
      */
     @FXML
     public void backButtonOnAction() throws IOException {

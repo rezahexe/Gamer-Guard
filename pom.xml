@@ -102,6 +102,8 @@
                 <configuration>
                     <destDir>javadoc</destDir>
                     <reportOutputDirectory>${project.build.directory}/docs</reportOutputDirectory>
+                    <defaultAuthor>Serene Coders</defaultAuthor>
+                    <defaultVersion>1.0.0</defaultVersion>
                 </configuration>
             </plugin>
             <plugin>

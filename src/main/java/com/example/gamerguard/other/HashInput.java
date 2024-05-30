@@ -6,6 +6,9 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * The {@code HashInput} class provides a method to hash a given input string using the SHA-256 algorithm.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class HashInput {
 
@@ -32,7 +35,7 @@ public class HashInput {
      *
      * @param input the input string to hash
      * @return the hexadecimal string representation of the hashed input
-     * @throws RuntimeException if the SHA-256 algorithm is not available
+     * @throws java.lang.RuntimeException if the SHA-256 algorithm is not available
      */
     public static String hashInput(String input) {
         try {

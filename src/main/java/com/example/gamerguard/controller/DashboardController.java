@@ -28,6 +28,9 @@ import java.util.ResourceBundle;
 /**
  * Controller class for the Dashboard.
  * Handles the initialization and interactions in the Dashboard UI.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class DashboardController implements Initializable {
 
@@ -64,10 +67,9 @@ public class DashboardController implements Initializable {
     private XYChart.Series<String, Number> averageSeries;
 
     /**
-     * Initializes the controller class.
+     * {@inheritDoc}
      *
-     * @param url the location used to resolve relative paths for the root object, or null if the location is not known.
-     * @param resourceBundle the resources used to localize the root object, or null if the root object was not localized.
+     * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -391,7 +393,7 @@ public class DashboardController implements Initializable {
      * Loads the settings scene.
      *
      * @param event the action event triggered by the user.
-     * @throws IOException if an I/O error occurs.
+     * @throws java.io.IOException if an I/O error occurs.
      */
     public void settingsButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/Settings.fxml"));
@@ -406,7 +408,7 @@ public class DashboardController implements Initializable {
      * Loads the profile settings scene.
      *
      * @param event the action event triggered by the user.
-     * @throws IOException if an I/O error occurs.
+     * @throws java.io.IOException if an I/O error occurs.
      */
     public void profileButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Settings_fxmls/profile-settings.fxml"));
@@ -421,7 +423,7 @@ public class DashboardController implements Initializable {
      * Loads the display games scene.
      *
      * @param event the action event triggered by the user.
-     * @throws IOException if an I/O error occurs.
+     * @throws java.io.IOException if an I/O error occurs.
      */
     public void gamesButtonOnAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("display-games.fxml"));

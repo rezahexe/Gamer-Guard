@@ -17,6 +17,12 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+/**
+ * <p>OTPController class.</p>
+ *
+ * @author Serene Coders
+ * @version 1.0.0
+ */
 public class OTPController {
     public Label otpField;
     public Button verifyButton;
@@ -31,6 +37,7 @@ public class OTPController {
 
     /**
      * Return True so that the next page may be opened.
+     *
      * @return True
      */
     public boolean isOtpVerified() {
@@ -41,6 +48,7 @@ public class OTPController {
     /**
      * Checks for correct user OTP input.
      * Otherwise, update message label and inform incorrect OTP.
+     *
      * @param actionEvent Button click
      */
     public void verifyButtonOnAction(javafx.event.ActionEvent actionEvent) {
@@ -59,6 +67,7 @@ public class OTPController {
      * Sets up email content.
      * Send OTP email to user email.
      * Update labels to inform user of status, successful or unsuccessful.
+     *
      * @param actionEvent Button click
      */
     public void sendOTPButtonOnAction(javafx.event.ActionEvent actionEvent) {
@@ -123,6 +132,7 @@ public class OTPController {
 
     /**
      * Generate random 4 digit OTP.
+     *
      * @return OTP number
      */
     public static String generateOTP() {

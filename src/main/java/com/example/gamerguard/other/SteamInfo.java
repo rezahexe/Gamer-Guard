@@ -14,6 +14,9 @@ import java.util.Map;
 
 /**
  * Class for retrieving information from Steam API.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class SteamInfo {
 

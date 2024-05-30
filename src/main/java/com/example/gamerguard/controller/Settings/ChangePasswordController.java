@@ -18,6 +18,9 @@ import java.sql.Statement;
 
 /**
  * Controller class for handling password change functionality.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class ChangePasswordController {
 
@@ -34,6 +37,7 @@ public class ChangePasswordController {
 
     /**
      * Closes change-password page.
+     *
      * @param event Button click
      */
     public void cancelButtonOnAction(ActionEvent event) {
@@ -45,6 +49,7 @@ public class ChangePasswordController {
     /**
      * Connects database and get user ID from session information.
      * Updates password when two password is filled out and is the same.
+     *
      * @param actionEvent Button click
      */
     public void confirmPasswordButtonOnAction(ActionEvent actionEvent) {

@@ -25,6 +25,9 @@ import java.util.ResourceBundle;
 
 /**
  * Controller class for notification settings.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class NotifiSettingsController implements Initializable {
 
@@ -47,9 +50,9 @@ public class NotifiSettingsController implements Initializable {
 
 
     /**
+     * {@inheritDoc}
+     *
      * Initializes the controller after its root element has been completely processed.
-     * @param location The location used to resolve relative paths for the root object, or null if the location is not known.
-     * @param resources The resources used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -114,8 +117,9 @@ public class NotifiSettingsController implements Initializable {
 
     /**
      * Handles the action when the back button is clicked.
+     *
      * @param event The MouseEvent representing the button click.
-     * @throws IOException If an I/O error occurs during loading the FXML file.
+     * @throws java.io.IOException If an I/O error occurs during loading the FXML file.
      */
     @FXML
     public void BackOnAction(MouseEvent event) throws IOException {

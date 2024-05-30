@@ -20,6 +20,9 @@ import java.util.ResourceBundle;
 
 /**
  * Controller class for handling actions related to the back button and profile settings button.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class BackButtonController implements Initializable {
 
@@ -30,10 +33,9 @@ public class BackButtonController implements Initializable {
 
 
     /**
-     * Initializes the controller class. This method is automatically called after the fxml file has been loaded.
+     * {@inheritDoc}
      *
-     * @param location The location used to resolve relative paths for the root object, or null if the location is not known.
-     * @param resources The resources used to localize the root object, or null if the root object was not localized.
+     * Initializes the controller class. This method is automatically called after the fxml file has been loaded.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,7 +49,7 @@ public class BackButtonController implements Initializable {
      * Handles the action event for the back button. Loads the settings scene when the back button is clicked.
      *
      * @param event The mouse event triggered by clicking the back button.
-     * @throws IOException If there is an error loading the FXML file.
+     * @throws java.io.IOException If there is an error loading the FXML file.
      */
     @FXML
     public void BackOnAction(MouseEvent event) throws IOException {

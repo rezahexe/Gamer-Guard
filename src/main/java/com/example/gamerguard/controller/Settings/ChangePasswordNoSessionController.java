@@ -18,6 +18,9 @@ import java.sql.Statement;
 
 /**
  * Controller class for handling password change without an active session.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class ChangePasswordNoSessionController {
     public Button comfirmPasswordButton;
@@ -34,6 +37,7 @@ public class ChangePasswordNoSessionController {
 
     /**
      * Sets the email address associated with the account.
+     *
      * @param emailAddress The email address to be set
      */
     public void setEmailAddress(String emailAddress) {
@@ -42,6 +46,7 @@ public class ChangePasswordNoSessionController {
 
     /**
      * Retrieves the email address associated with the account.
+     *
      * @return The email address associated with the account
      */
     public String getEmailAddress() {
@@ -50,6 +55,7 @@ public class ChangePasswordNoSessionController {
 
     /**
      * Closes change-password page.
+     *
      * @param event Button click
      */
     public void cancelButtonOnAction(ActionEvent event) {
@@ -61,6 +67,7 @@ public class ChangePasswordNoSessionController {
     /**
      * Connects database and get user ID from session information.
      * Updates password when two password is filled out and is the same.
+     *
      * @param actionEvent Button click
      */
     public void confirmPasswordButtonOnAction(ActionEvent actionEvent) {

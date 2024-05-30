@@ -8,8 +8,12 @@ import java.sql.SQLException;
  * This class represents a singleton database connection instance using JDBC.
  * It ensures that only one connection to the database is established throughout
  * the application's lifecycle.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class DatabaseConnection {
+    /** Constant <code>instance</code> */
     public static Connection instance = null;
 
 

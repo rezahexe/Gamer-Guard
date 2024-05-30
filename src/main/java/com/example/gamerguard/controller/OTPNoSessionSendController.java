@@ -20,6 +20,9 @@ import java.util.Properties;
 
 /**
  * Controller class for sending OTP without a session.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class OTPNoSessionSendController {
     public Label otpField;
@@ -37,6 +40,7 @@ public class OTPNoSessionSendController {
 
     /**
      * Method to set the email address.
+     *
      * @param emailAddress Email address to be set.
      */
     public void setEmailAddress(String emailAddress) {
@@ -45,6 +49,7 @@ public class OTPNoSessionSendController {
 
     /**
      * Method to retrieve the email address.
+     *
      * @return The set email address.
      */
     public String getEmailAddress() {
@@ -53,6 +58,7 @@ public class OTPNoSessionSendController {
 
     /**
      * Return True so that the next page may be opened.
+     *
      * @return True
      */
     public boolean isOtpVerified() {
@@ -63,6 +69,7 @@ public class OTPNoSessionSendController {
     /**
      * Checks for correct user OTP input.
      * Otherwise, update message label and inform incorrect OTP.
+     *
      * @param actionEvent Button click
      */
     public void verifyButtonOnAction(javafx.event.ActionEvent actionEvent) {
@@ -81,6 +88,7 @@ public class OTPNoSessionSendController {
      * Sets up email content.
      * Send OTP email to user email.
      * Update labels to inform user of status, successful or unsuccessful.
+     *
      * @param actionEvent Button click
      */
     public void sendOTPButtonOnAction(ActionEvent actionEvent) {
@@ -146,6 +154,7 @@ public class OTPNoSessionSendController {
 
     /**
      * Generate random 4 digit OTP.
+     *
      * @return OTP number
      */
     public static String generateOTP() {

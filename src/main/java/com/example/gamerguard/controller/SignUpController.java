@@ -24,6 +24,9 @@ import java.util.ResourceBundle;
 /**
  * Controller class for the SignUp.fxml file.
  * Handles user registration functionality.
+ *
+ * @author Serene Coders
+ * @version 1.0.0
  */
 public class SignUpController implements Initializable {
 
@@ -50,16 +53,16 @@ public class SignUpController implements Initializable {
     @FXML
     private Hyperlink loginHyperlink;
 
+    /** Constant <code>registerButtonStatic</code> */
     public static Button registerButtonStatic;
 
 
     /**
+     * {@inheritDoc}
+     *
      * Initializes the controller with the Gamer Guard logo image.
      * Loads the logo image from the specified file path and sets it
      * as the image source for the logoImageView.
-     *
-     * @param url            The location used to resolve relative paths for the root object, or null if the location is not known.
-     * @param resourceBundle The resource bundle that contains localized objects for the controller, or null if there is no resource bundle.
      */
     public  void initialize (URL url, ResourceBundle resourceBundle) {
         registerButtonStatic = registerButton;
@@ -145,7 +148,7 @@ public class SignUpController implements Initializable {
      * </p>
      *
      * @param event The action event triggered by clicking the terms and conditions hyperlink.
-     * @throws IOException If an input or output exception occurs while loading the FXML file.
+     * @throws java.io.IOException If an input or output exception occurs while loading the FXML file.
      */
     public void termsAndConditionsHyperlinkOnAction(ActionEvent event) throws IOException {
 //        Stage stage = (Stage) termsAndConditionsHyperlink.getScene().getWindow();
@@ -208,7 +211,7 @@ public class SignUpController implements Initializable {
      * Loads the login form from an FXML file and sets it as the scene for the current stage.
      *
      * @param event The ActionEvent triggered by clicking the login hyperlink.
-     * @throws IOException If an error occurs while loading the FXML file.
+     * @throws java.io.IOException If an error occurs while loading the FXML file.
      */
     public void loginHyperlinkOnAction(ActionEvent event) throws IOException {
         Stage stage = (Stage) loginHyperlink.getScene().getWindow();
@@ -226,7 +229,7 @@ public class SignUpController implements Initializable {
      * The current stage is obtained from the scene of the {@code registerButton}.
      * </p>
      *
-     * @throws IOException if the FXML file cannot be loaded.
+     * @throws java.io.IOException if the FXML file cannot be loaded.
      */
     public void openDashboard() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard.fxml"));
