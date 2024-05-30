@@ -102,6 +102,7 @@
                 <configuration>
                     <destDir>javadoc</destDir>
                     <reportOutputDirectory>${project.build.directory}/docs</reportOutputDirectory>
+                    <failOnError>false</failOnError>
                 </configuration>
             </plugin>
             <plugin>
