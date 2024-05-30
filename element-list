@@ -1,0 +1,6 @@
+module:com.example.gamerguard
+com.example.gamerguard
+com.example.gamerguard.controller
+com.example.gamerguard.controller.Settings
+com.example.gamerguard.model
+com.example.gamerguard.other
