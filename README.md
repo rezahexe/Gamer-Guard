@@ -11,6 +11,7 @@
 - [Initial Requirements](#initial-requirements)
 - [Features](#features)
 - [Testing Account information](#Account)
+- [GitHub Pages](#github-pages)
 
 ## Project Overview
 
@@ -102,3 +103,6 @@ The primary goal of Gamer Guard is to design, build, and deliver a user-friendly
 - Steam ID that can be used:
   - Id: 76561198434881039 (Has less games)
   - Id: 76561198324969960 (Has more games)
+
+## GitHub Pages
+https://rezahexe.github.io/Gamer-Guard/com.example.gamerguard/module-summary.html
