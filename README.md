@@ -10,10 +10,7 @@
 - [Milestones](#milestones)
 - [Initial Requirements](#initial-requirements)
 - [Features](#features)
-- [Installation](#installation)
 - [Testing Account information](#Account)
-- [Usage](#usage)
-- [License](#license)
 
 ## Project Overview
 
@@ -91,17 +88,11 @@ The primary goal of Gamer Guard is to design, build, and deliver a user-friendly
 - Display the user's Steam library of games within the application.
   - Note:
     - The Steam API is only able to retrieve information from a Steam account that is set to public.
-    - The more Steam games a Steam account has, the longer time it may take to open the Game page (clicking 'Games' button in the Dashboard)
+    - The more steam games a Steam account have, the longer time it may take to open the Game page (clicking 'Games' button in the Dashboard)
 - Implement game limitation features with customizable limits for specific days of the week.
 - Track playtime statistics for individual games and overall gaming activity.
 - Provide data analysis to advise users on reducing screen time, including weekly statistics comparison.
 - Health reminders can be turned off for a certain period.
-
-## Installation
-
-- Clone the repository from [GitHub link].
-- Install Java Development Kit (JDK) version X.X or higher.
-- Run `java -jar GamerGuard.jar` to start the application.
 
 ## Account
 
@@ -111,15 +102,3 @@ The primary goal of Gamer Guard is to design, build, and deliver a user-friendly
 - Steam ID that can be used:
   - Id: 76561198434881039 (Has less games)
   - Id: 76561198324969960 (Has more games)
-
-## Usage
-
-1. Launch the application.
-2. Sign in or create a new account.
-3. Customize settings according to preferences.
-4. Explore the features and utilize them to manage gaming time effectively.
-5. Provide feedback and suggestions for improvement.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
